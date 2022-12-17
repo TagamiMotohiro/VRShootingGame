@@ -26,57 +26,74 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        //コンポーネント取得＆チャージを示すキューブを生成
         myLR = GetComponent<LineRenderer>();
         go = PhotonNetwork.Instantiate("27Cube", this.transform.position, Quaternion.identity);
     }
 	// Update is called once per frame
 	public override void OnJoinedRoom()
 	{
-        
+        if (go == null)
+        {
+            go = PhotonNetwork.Instantiate("27Cube", this.transform.position, Quaternion.identity);
+        }
 	}
 	void Update()
     {
         if (stert)
         {
-            myLR.SetPosition(0, this.transform.position);
-            myLR.SetPosition(1, this.transform.position + this.transform.forward * lineRange);
-            Ray ray = new Ray(this.transform.position+this.transform.forward*2, this.transform.forward);
-            if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
-            {
-                magazine = 0;
-                if (Physics.Raycast(ray, out hit, rayMask))
-                {
-                    LockOn(hit);
-                }
-                myLR.enabled = true;
-                EnelgyCharge();
-            }
-            else {
-                myLR.enabled = false;
-                if (Charge >= maxCharge)
-                {
-                    magazine = maxMagazine;
-                } 
-                Charge = 0;
-                if (magazine > 0)
-                {
-                    if (coolTime >= late)
-                    {
-                        Fire();
-                        coolTime = 0; 
-                        magazine--;
-                    }
-                }
-            }
-            coolTime += Time.deltaTime;
+            SetPointer();
+            ChargeCtrl();
             CubeTransForm();
         }
     }
+    void ChargeCtrl()
+    {
+        Ray ray = new Ray(this.transform.position + this.transform.forward * 2, this.transform.forward);
+        if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
+        {
+            magazine = 0;
+            if (Physics.Raycast(ray, out hit, rayMask))
+            {
+                LockOn(hit);
+            }
+            myLR.enabled = true;
+            EnelgyCharge();
+        }
+        else
+        {
+            myLR.enabled = false;
+            if (Charge >= maxCharge)
+            {
+                magazine = maxMagazine;
+            }
+            Charge = 0;
+            if (magazine > 0)
+            {
+                if (coolTime >= late)
+                {
+                    Fire();
+                    coolTime = 0;
+                    magazine--;
+                }
+            }
+        }
+        coolTime+=Time.deltaTime;
+    }
     void CubeTransForm()
     {
+        //チャージ量を受けてキューブが拡大
         go.transform.position = this.transform.position;
         go.transform.localScale = new Vector3(0.1f * Charge, 0.1f * Charge, 0.1f * Charge);
     }
+    void SetPointer()
+    {
+        //Aim時のポインターをセット
+        myLR.SetPosition(0, this.transform.position);
+        myLR.SetPosition(1, this.transform.position + this.transform.forward * lineRange);
+    }
+
+
     void Fire()
     {
         GameObject g = PhotonNetwork.Instantiate("Bullet", this.transform.position, Quaternion.identity);
