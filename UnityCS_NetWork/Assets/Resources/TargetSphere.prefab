@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -775870024898908012}
   m_Layer: 9
   m_Name: TargetSphere
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,6 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyEffect: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
   HP: 10
+  hit_Score: 100
+  deferted_Score: 1000
 --- !u!114 &7020484911925086701
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 812367094558903777}
   m_Layer: 9
   m_Name: ChaseSphere
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
