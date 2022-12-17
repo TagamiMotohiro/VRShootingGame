@@ -8,6 +8,7 @@ TagManager:
   - bullet
   - Mine
   - Shield
+  - Target
   layers:
   - Default
   - TransparentFX
