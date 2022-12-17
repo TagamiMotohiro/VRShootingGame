@@ -11809,6 +11809,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8535264580314016114, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
+      propertyPath: HP
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535264580314016114, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
+      propertyPath: hit_Score
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_Name
       value: TargetCube (1)
