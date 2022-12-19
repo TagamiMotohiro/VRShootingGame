@@ -43,6 +43,7 @@ public class TargetManeger : MonoBehaviourPunCallbacks
     void Update()
     {
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        //各ROMで共通の変更のためルームホストのみがこの処理を行う(デフォルトなら最初に部屋に入った人)
         {
             cool_Time += Time.deltaTime;
             if (cool_Time <= late) { return; }
@@ -50,7 +51,9 @@ public class TargetManeger : MonoBehaviourPunCallbacks
             float random_x = Random.Range(random_x_min,random_x_max);
             float random_y = Random.Range(random_y_min,random_y_max);
             float random_z = Random.Range(random_z_min,random_z_max);
-            int Random_Num = Random.Range(0,100);
+            int Random_Num = Random.Range(0,100);//確率変数
+            //それぞれの確率で分岐
+            //弾を撃ってくるPipeは確率低め
             if (Random_Num >= 0 && Random_Num <= 45)
             {
                 PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x,random_y,random_z),Quaternion.identity);
@@ -59,7 +62,7 @@ public class TargetManeger : MonoBehaviourPunCallbacks
             {
                 PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
             }
-            if (Random_Num >= 91 && Random_Num <= 100)
+            if (Random_Num >= 91 &&  Random_Num <= 100)
             {
                 PhotonNetwork.Instantiate("Pipe", new Vector3(random_x, random_y, random_z), Quaternion.identity);
             }
@@ -67,7 +70,8 @@ public class TargetManeger : MonoBehaviourPunCallbacks
     }
 
     void TargetInit()
-    { 
+    {
+    //シーン上のポイントに合わせてランダムの上限下限を設定(Sceneでいじればそのまま反映されるはず)
     random_x_min = leftUp_Point.position.x;
     random_x_max = rightUp_Point.position.x;
     random_y_min = leftDown_Point.position.y;
