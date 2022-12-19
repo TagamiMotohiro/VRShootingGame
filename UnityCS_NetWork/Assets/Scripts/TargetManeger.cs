@@ -24,7 +24,7 @@ public class TargetManeger : MonoBehaviourPunCallbacks
     [SerializeField]
     Transform Depth_Point;
 
-    List<GameObject> targetList;//ターゲット沸き数管理用のList
+    List<GameObject> targetList=new List<GameObject>();//ターゲット沸き数管理用のList
 
     //沸き位置指定用のランダム上限下限
     float random_x_min=0;
@@ -46,6 +46,7 @@ public class TargetManeger : MonoBehaviourPunCallbacks
         {
             cool_Time += Time.deltaTime;
             if (cool_Time <= late) { return; }
+            if (!CheckLimit()) { return; }//沸き上限に達した場合生成は一旦待つ
             cool_Time = 0;
             float random_x = Random.Range(random_x_min,random_x_max);
             float random_y = Random.Range(random_y_min,random_y_max);
@@ -53,19 +54,30 @@ public class TargetManeger : MonoBehaviourPunCallbacks
             int Random_Num = Random.Range(0,100);
             if (Random_Num >= 0 && Random_Num <= 45)
             {
-                PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x,random_y,random_z),Quaternion.identity);
+                GameObject g =PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x,random_y,random_z),Quaternion.identity);
+                targetList.Add(g);
             }
             if (Random_Num >= 46 && Random_Num <= 90)
             {
-                PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+                GameObject g =PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+                targetList.Add(g);
             }
             if (Random_Num >= 91 && Random_Num <= 100)
             {
-                PhotonNetwork.Instantiate("Pipe", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+                GameObject g = PhotonNetwork.Instantiate("Pipe", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+                targetList.Add(g);
             }
         }
     }
-
+    bool CheckLimit()
+    {
+        targetList.RemoveAll(n=>n==null);
+        if (targetList.Count <= spawn_Limit)
+        {
+            return true;
+        }
+        return false;
+    }
     void TargetInit()
     { 
     random_x_min = leftUp_Point.position.x;
