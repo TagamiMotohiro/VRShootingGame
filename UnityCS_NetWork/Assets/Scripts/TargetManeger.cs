@@ -8,6 +8,9 @@ public class TargetManeger : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     int spawn_Limit = 10;//ターゲットの沸き数上限
+    [SerializeField]
+    float late=10f;
+    float cool_Time;
 
     //ゲームオブジェクトのTransFormを指定してターゲットが沸く範囲を指定
     [SerializeField]
@@ -41,9 +44,25 @@ public class TargetManeger : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
+            cool_Time += Time.deltaTime;
+            if (cool_Time <= late) { return; }
+            cool_Time = 0;
             float random_x = Random.Range(random_x_min,random_x_max);
             float random_y = Random.Range(random_y_min,random_y_max);
             float random_z = Random.Range(random_z_min,random_z_max);
+            int Random_Num = Random.Range(0,100);
+            if (Random_Num >= 0 && Random_Num <= 45)
+            {
+                PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x,random_y,random_z),Quaternion.identity);
+            }
+            if (Random_Num >= 46 && Random_Num <= 90)
+            {
+                PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+            }
+            if (Random_Num >= 91 && Random_Num <= 100)
+            {
+                PhotonNetwork.Instantiate("Pipe", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+            }
         }
     }
 

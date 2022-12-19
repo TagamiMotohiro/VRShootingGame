@@ -1688,6 +1688,10 @@ PrefabInstance:
       value: TargetCube (5)
       objectReference: {fileID: 0}
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -2758,6 +2762,10 @@ PrefabInstance:
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_Name
       value: TargetSphere (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_TagString
@@ -5803,6 +5811,10 @@ PrefabInstance:
       value: TargetSphere (7)
       objectReference: {fileID: 0}
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -7724,6 +7736,10 @@ PrefabInstance:
       value: TargetSphere (8)
       objectReference: {fileID: 0}
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -7926,6 +7942,10 @@ PrefabInstance:
       value: TargetSphere (5)
       objectReference: {fileID: 0}
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -8050,6 +8070,10 @@ PrefabInstance:
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_Name
       value: TargetCube (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_TagString
@@ -8544,6 +8568,10 @@ PrefabInstance:
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_Name
       value: TargetSphere (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_TagString
@@ -10159,6 +10187,10 @@ PrefabInstance:
       value: TargetCube (0)
       objectReference: {fileID: 0}
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -11450,6 +11482,10 @@ PrefabInstance:
       value: TargetSphere (0)
       objectReference: {fileID: 0}
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -11785,6 +11821,10 @@ PrefabInstance:
       value: TargetSphere (3)
       objectReference: {fileID: 0}
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -12005,6 +12045,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotTarget (0)
       objectReference: {fileID: 0}
+    - target: {fileID: 3371116749365285792, guid: 76d19ab1828ab984e952580b280447d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3371116749365285816, guid: 76d19ab1828ab984e952580b280447d1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -12121,6 +12165,10 @@ PrefabInstance:
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_Name
       value: TargetCube (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_TagString
@@ -12585,7 +12633,7 @@ BoxCollider:
   m_GameObject: {fileID: 1210521147}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -13351,6 +13399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e80de73c738437e45a534f41d9a556d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn_Limit: 10
+  late: 10
   rightUp_Point: {fileID: 1583384585}
   leftUp_Point: {fileID: 772199742}
   rightDown_Point: {fileID: 1248445531}
@@ -16258,6 +16308,10 @@ PrefabInstance:
       value: TargetSphere (6)
       objectReference: {fileID: 0}
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -18205,7 +18259,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-21146
+  m_Name: pb_Mesh-21198
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18453,6 +18507,10 @@ PrefabInstance:
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_Name
       value: TargetCube (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_TagString
@@ -20154,6 +20212,10 @@ PrefabInstance:
       value: TargetCube (2)
       objectReference: {fileID: 0}
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -20884,6 +20946,10 @@ PrefabInstance:
       value: TargetCube (3)
       objectReference: {fileID: 0}
     - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8535264580314016120, guid: b802b25e70ad57e48a9014321a2823b1, type: 3}
       propertyPath: m_TagString
       value: Target
       objectReference: {fileID: 0}
@@ -21479,6 +21545,10 @@ PrefabInstance:
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_Name
       value: TargetSphere (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6158302908800447095, guid: 9299508e3356ca547831165634188b9b, type: 3}
       propertyPath: m_TagString
