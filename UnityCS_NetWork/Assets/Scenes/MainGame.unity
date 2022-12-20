@@ -13503,6 +13503,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1270646933}
   - component: {fileID: 1270646934}
+  - component: {fileID: 1270646935}
   m_Layer: 0
   m_Name: TargetManeger
   m_TagString: Untagged
@@ -13544,6 +13545,19 @@ MonoBehaviour:
   rightDown_Point: {fileID: 1248445531}
   leftDown_Point: {fileID: 1874611792}
   Depth_Point: {fileID: 1513081995}
+--- !u!114 &1270646935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270646932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5b16e3c0875094d9c45edeacbb5a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeText: {fileID: 371216713}
 --- !u!1 &1276924747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100678, guid: c925872ce3bfa384589bf34b953d5a65, type: 3}
@@ -18826,8 +18840,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -23348,7 +23362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7041786442797087847, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 927
+      value: 959
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
