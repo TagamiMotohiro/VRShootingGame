@@ -5,9 +5,15 @@ using Photon.Realtime;
 using Photon.Pun;
 public class TimeManeger : MonoBehaviourPunCallbacks
 {
+    bool start = false;
     [SerializeField]
     TMPro.TextMeshProUGUI TimeText;
     int startTime;
+    int startTimeSec=0;
+    int timeMin = 3;
+    int timesec;
+    int latetimesec;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,20 +22,21 @@ public class TimeManeger : MonoBehaviourPunCallbacks
 	public override void OnJoinedRoom()
 	{
 	   startTime = PhotonNetwork.ServerTimestamp;
+        start = true;
 	}
 	// Update is called once per frame
 	void Update()
     {
-        
+        if (!start) { return; }
         int time =unchecked(PhotonNetwork.ServerTimestamp-startTime);
-        string timestr = time.ToString();
-        int time_digits = timestr.Length;
-        int timeMin = time / 60000;
-        int timesec = time / 1000;
-        if (timesec >= 60)
+        timesec = 59-(time/1000)%60;
+        
+        if (timesec==59&&latetimesec==0)
         {
-            timesec -= 60;
+            timeMin -= 1;
+            Debug.Log("timeMinå∏è≠" + "timesec=" + timesec.ToString()) ;
         }
-        TimeText.text = timeMin.ToString("D2")+":"+timesec.ToString("D2")+":"+timestr.Substring(time_digits-3);
+        TimeText.text = timeMin.ToString("D2")+":"+timesec.ToString("D2");
+        latetimesec = timesec;
     }
 }
