@@ -17,12 +17,12 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-       
+        startTime = PhotonNetwork.ServerTimestamp;
+        start = true;
     }
 	public override void OnJoinedRoom()
 	{
-	   startTime = PhotonNetwork.ServerTimestamp;
-        start = true;
+	  
 	}
 	// Update is called once per frame
 	void Update()

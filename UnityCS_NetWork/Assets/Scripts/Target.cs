@@ -22,6 +22,7 @@ public class Target : MonoBehaviourPunCallbacks
     {
         halo = (Behaviour)gameObject.GetComponent("Halo");
         maneger = GameObject.Find("PUN2Script").GetComponent<MainGamePUNmaneger>();
+
     }
 	public override void OnJoinedRoom()
     {
@@ -58,18 +59,21 @@ public class Target : MonoBehaviourPunCallbacks
 	public void OnCollisionEnter(Collision collision)
 	{   
         PhotonView Collision_photonView = collision.gameObject.GetComponent<PhotonView>();
-        if (Collision_photonView == null) { return; }
-        this.HP--;
-        if (Collision_photonView.IsMine) {
+        //当たったオブジェクトのPhotonViewを取得
+        if (Collision_photonView == null) { return; }//PhtonViewを持たないオブジェクトに当たった場合何もしない
+        this.HP--;//自身の耐久値を減らす
+        if (Collision_photonView.IsMine) {//
             maneger.PlusScore(hit_Score);
             if (this.HP <= 0)
             {
                 maneger.PlusScore(deferted_Score);
-                PhotonNetwork.Destroy(this.gameObject);
+                PhotonNetwork.Destroy(this.gameObject);//的は全部部屋ホストが作ってるからそいつが消さないとダメ
+                return;
             }
             if (collision.gameObject.tag == "Player")
             {
                 PhotonNetwork.Destroy(this.gameObject);
+                return;
             }
         }
 	}

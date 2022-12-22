@@ -14,6 +14,7 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
     GameObject OVRcamera;
     GameObject RightHand;
     // Start is called before the first frame update
+
     void Start()
     {
 		PhotonNetwork.IsMessageQueueRunning = true;

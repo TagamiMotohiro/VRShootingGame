@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 public class PUN_Maneger : MonoBehaviourPunCallbacks
 {
 	GameObject human;
 	GameObject OVRcamera;
 	GameObject RightHand;
+	float score = 0;
+	[SerializeField]
+	TextMeshProUGUI scoreText;
 	public override void OnConnectedToMaster()//PUNに接続された際の処理（コールバック）
 	{
 		// 第一引数で指定した名前のルームに入室、なかった場合は作成して入室。
@@ -41,6 +45,10 @@ public class PUN_Maneger : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        
-    }
+		scoreText.text = score.ToString();
+	}
+	public void PlusScore(int plusScore)
+	{
+		score += plusScore;
+	}
 }
