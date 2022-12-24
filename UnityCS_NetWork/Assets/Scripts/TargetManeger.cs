@@ -52,6 +52,7 @@ public class TargetManeger : MonoBehaviourPunCallbacks
             float random_y = Random.Range(random_y_min,random_y_max);
             float random_z = Random.Range(random_z_min,random_z_max);
             int Random_Num = Random.Range(0,100);
+            //Šm—¦‚Å•ªŠò(’e‚ğŒ‚‚Á‚Ä‚­‚é•d‚¢‡‚Ì“›‚ÍŠm—¦’á‚ß)
             if (Random_Num >= 0 && Random_Num <= 45)
             {
                 GameObject g =PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x,random_y,random_z),Quaternion.identity);
