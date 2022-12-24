@@ -7,7 +7,7 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     float instanceDistance=2;
-    float score = 0;
+    public static float score = 50;
     [SerializeField]
     TextMeshProUGUI scoreText;
     GameObject player;
