@@ -28,9 +28,21 @@ public class Target : MonoBehaviourPunCallbacks
     {
          
 	}
-	// Update is called once per frame
-	void LateUpdate()
+    // Update is called once per frame
+    private void OnDisable()
     {
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+         {
+                PhotonNetwork.Destroy(this.gameObject);
+         }
+    }
+    void LateUpdate()
+    {
+        if (this.HP <= 0)
+        {
+            this.gameObject.SetActive(false);
+            
+        }
         if (isTargeted)
         {
             if (halo == null) { return; }
@@ -63,18 +75,19 @@ public class Target : MonoBehaviourPunCallbacks
         if (Collision_photonView == null) { return; }//PhtonViewを持たないオブジェクトに当たった場合何もしない
         this.HP--;//自身の耐久値を減らす
         if (Collision_photonView.IsMine) {//
+            if (collision.gameObject.tag == "Player")
+            {
+                this.HP = 0;
+                maneger.PlusScore(-deferted_Score);
+                return;
+            }
             maneger.PlusScore(hit_Score);
             if (this.HP <= 0)
             {
                 maneger.PlusScore(deferted_Score);
-                PhotonNetwork.Destroy(this.gameObject);//的は全部部屋ホストが作ってるからそいつが消さないとダメ
-                return;
-            }
-            if (collision.gameObject.tag == "Player")
-            {
-                PhotonNetwork.Destroy(this.gameObject);
                 return;
             }
         }
+        
 	}
 }

@@ -8,6 +8,8 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     bool start = false;
     [SerializeField]
     TMPro.TextMeshProUGUI TimeText;
+    [SerializeField]
+    TMPro.TextMeshProUGUI FinishText;
     int startTime;
     int startTimeSec=0;
     int timeMin = 3;
@@ -37,6 +39,16 @@ public class TimeManeger : MonoBehaviourPunCallbacks
             Debug.Log("timeMinå∏è≠" + "timesec=" + timesec.ToString()) ;
         }
         TimeText.text = timeMin.ToString("D2")+":"+timesec.ToString("D2");
+        if (timesec == 0 && timeMin == 0)
+        { 
+            TimeText.gameObject.SetActive(false);
+            FinishText.gameObject.SetActive(true);
+            Invoke("LoadResult",3f);
+        }
         latetimesec = timesec;
+    }
+    void LoadResult()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
     }
 }
