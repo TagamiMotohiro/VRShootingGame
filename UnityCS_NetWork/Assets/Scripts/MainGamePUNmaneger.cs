@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     float instanceDistance=2;
-    public static float score = 50;
+    public static float score = 0;
+    public static float Player2score = 0;
     [SerializeField]
     TextMeshProUGUI scoreText;
     GameObject player;
@@ -34,10 +36,24 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        scoreText.text = score.ToString();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            scoreText.text = score.ToString();
+        }
+        else
+        {
+            scoreText.text = Player2score.ToString();
+        }
     }
     public void PlusScore(int plusScore)
     {
-        score += plusScore;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            score += plusScore;
+        }
+        else
+        {
+            Player2score += plusScore;
+        }
     }
 }

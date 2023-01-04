@@ -33,7 +33,7 @@ public class Target : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
          {
-                PhotonNetwork.Destroy(this.gameObject);
+            PhotonNetwork.Destroy(this.gameObject);
          }
     }
     void LateUpdate()
@@ -41,8 +41,8 @@ public class Target : MonoBehaviourPunCallbacks
         if (this.HP <= 0)
         {
             this.gameObject.SetActive(false);
-            
-        }
+			Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+		}
         if (isTargeted)
         {
             if (halo == null) { return; }
@@ -59,15 +59,10 @@ public class Target : MonoBehaviourPunCallbacks
     {
         isTargeted = true;
     }
-	private void OnApplicationQuit()
-	{
+    private void OnApplicationQuit()
+    {
         sceneUnload = true;
-	}
-	private void OnDestroy()
-	{
-        if (sceneUnload) { return; }
-        Instantiate(DestroyEffect,transform.position,Quaternion.identity);
-	}
+    }
 	public void OnCollisionEnter(Collision collision)
 	{   
         PhotonView Collision_photonView = collision.gameObject.GetComponent<PhotonView>();
@@ -79,7 +74,8 @@ public class Target : MonoBehaviourPunCallbacks
             {
                 this.HP = 0;
                 maneger.PlusScore(-deferted_Score);
-                return;
+				Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+				return;
             }
             maneger.PlusScore(hit_Score);
             if (this.HP <= 0)

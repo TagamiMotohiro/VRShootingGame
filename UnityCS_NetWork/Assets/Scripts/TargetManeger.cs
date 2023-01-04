@@ -58,12 +58,12 @@ public class TargetManeger : MonoBehaviourPunCallbacks
                 GameObject g =PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x,random_y,random_z),Quaternion.identity);
                 targetList.Add(g);
             }
-            if (Random_Num >= 46 && Random_Num <= 90)
+            if (Random_Num >= 46 && Random_Num <= 85)
             {
                 GameObject g =PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
             }
-            if (Random_Num >= 91 && Random_Num <= 100)
+            if (Random_Num >= 86 && Random_Num <= 100)
             {
                 GameObject g = PhotonNetwork.Instantiate("Pipe", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
