@@ -13,7 +13,7 @@ public class GetScore : MainGamePUNmaneger {
     void Start()
     {
         TextMeshProUGUI score_text1=score_object1.GetComponent<TextMeshProUGUI>();
-        score_text1.text=MainGamePUNmaneger.score.ToString();
+        score_text1.text=MainGamePUNmaneger.Player1score.ToString();
         TextMeshProUGUI score_text2 = score_object2.GetComponent<TextMeshProUGUI>( );
         score_text2.text = "00000";
         

@@ -8,7 +8,7 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     float instanceDistance=2;
-    public static float score = 0;
+    public static float Player1score = 0;
     public static float Player2score = 0;
     [SerializeField]
     TextMeshProUGUI scoreText;
@@ -38,7 +38,7 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            scoreText.text = score.ToString();
+            scoreText.text = Player1score.ToString();
         }
         else
         {
@@ -49,7 +49,7 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            score += plusScore;
+            Player1score += plusScore;
         }
         else
         {
