@@ -10,9 +10,12 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     TMPro.TextMeshProUGUI TimeText;
     [SerializeField]
     TMPro.TextMeshProUGUI FinishText;
+    [SerializeField]
+    TMPro.TextMeshProUGUI CountDownText;
     int startTime;
     int startTimeSec=0;
     int timeMin = 3;
+    int countNum=3;
     int timesec;
     int latetimesec;
 
@@ -20,7 +23,6 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     void Start()
     {
         startTime = PhotonNetwork.ServerTimestamp;
-        start = true;
     }
 	public override void OnJoinedRoom()
 	{
@@ -29,6 +31,7 @@ public class TimeManeger : MonoBehaviourPunCallbacks
 	// Update is called once per frame
 	void Update()
     {
+        CountDown();
         if (!start) { return; }
         int time =unchecked(PhotonNetwork.ServerTimestamp-startTime);
         timesec = 59-(time/1000)%60;
@@ -45,10 +48,30 @@ public class TimeManeger : MonoBehaviourPunCallbacks
             FinishText.gameObject.SetActive(true);
             Invoke("LoadResult",3f);
         }
+        TextChengeColor();
         latetimesec = timesec;
     }
     void LoadResult()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
     }
+    void TextChengeColor()
+    {
+        if (timesec <= 30 && timeMin == 0)
+        { 
+            TimeText.color = Color.red;
+        }
+    }
+    void CountDown()
+    {
+        if (start) { return; }
+		int time = unchecked(PhotonNetwork.ServerTimestamp - startTime);
+        countNum = 3-(time / 1000)%60;
+        CountDownText.text = countNum.ToString();
+        if (countNum <= 0)
+        { start = true;
+          startTime= PhotonNetwork.ServerTimestamp;
+          CountDownText.gameObject.SetActive(false);
+        }
+	}
 }
