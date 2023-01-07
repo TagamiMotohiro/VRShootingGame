@@ -169,7 +169,7 @@ MonoBehaviour:
   HP: 10
   hit_Score: 100
   deferted_Score: 1000
-  chaseSpeed: 5
+  chaseSpeed: 10
 --- !u!54 &812367094558903777
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class ShotTarget : Target
     float late = 10f;
     float coolTime;
     GameObject firePos;
+    [SerializeField]
     List<GameObject> Player_List;
     GameObject LookPlayer;
     // Start is called before the first frame update
@@ -25,7 +26,7 @@ public class ShotTarget : Target
             isStart = true;
         }
         Player_List = GameObject.FindGameObjectsWithTag("Player").ToList();
-        LookPlayer = closestPlayer();
+        //全プレイヤーを取得
         base.Start();
         firePos = transform.GetChild(0).gameObject;
     }
@@ -33,20 +34,23 @@ public class ShotTarget : Target
     void Update()
     {
         if (!isStart) { return; }
-        
+        LookPlayer = closestPlayer();
+        //関数で一番近いプレイヤーを算出
         LookAtTransformUp();
+        //一番近いプレイヤーのほうを向く(砲身が)
         if (coolTime > late)
         {
             coolTime = 0;
             if (PhotonNetwork.LocalPlayer.IsMasterClient == false) { return; }
             GameObject g = PhotonNetwork.Instantiate("ChaseSphere", firePos.transform.position, Quaternion.identity);
+            //クールタイムが終わったら弾を生成
             g.GetComponent<MoveTarget>().SetTarget(LookPlayer);
+            //その際弾に今向いているプレイヤーの情報を代入
         }
         coolTime += Time.deltaTime;
     }
-    GameObject closestPlayer()
+    GameObject closestPlayer()//Player_Listの中から自身に一番近いプレイヤーを算出
     {
-
         GameObject clossest = null;
         float minDistance = float.MaxValue;
         foreach (GameObject g in Player_List)
@@ -62,8 +66,6 @@ public class ShotTarget : Target
     }
     void LookAtTransformUp()
     {
-        //Quaternion q = Quaternion.LookRotation(transform.up, LookPlayer.transform.position - this.transform.position); 
-        //transform.rotation= q;
         this.transform.LookAt(LookPlayer.transform.position);
         this.transform.rotation = transform.rotation*Quaternion.AngleAxis(90,Vector3.right);
     }
