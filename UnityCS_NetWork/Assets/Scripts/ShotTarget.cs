@@ -18,6 +18,7 @@ public class ShotTarget : Target
     [SerializeField]
     List<GameObject> Player_List;
     GameObject LookPlayer;
+    LineRenderer myLR;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class ShotTarget : Target
         {
             isStart = true;
         }
+        myLR = GetComponent<LineRenderer>();
         Player_List = GameObject.FindGameObjectsWithTag("Player").ToList();
         //全プレイヤーを取得
         base.Start();
@@ -49,7 +51,7 @@ public class ShotTarget : Target
         }
         coolTime += Time.deltaTime;
     }
-    GameObject closestPlayer()//Player_Listの中から自身に一番近いプレイヤーを算出
+	GameObject closestPlayer()//Player_Listの中から自身に一番近いプレイヤーを算出
     {
         GameObject clossest = null;
         float minDistance = float.MaxValue;
@@ -68,5 +70,7 @@ public class ShotTarget : Target
     {
         this.transform.LookAt(LookPlayer.transform.position);
         this.transform.rotation = transform.rotation*Quaternion.AngleAxis(90,Vector3.right);
+        myLR.SetPosition(0,firePos.transform.position);
+        myLR.SetPosition(1, LookPlayer.transform.position + Vector3.down * 0.5f);
     }
 }
