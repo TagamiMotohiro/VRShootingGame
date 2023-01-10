@@ -24,17 +24,13 @@ public class Target : MonoBehaviourPunCallbacks
         maneger = GameObject.Find("PUN2Script").GetComponent<MainGamePUNmaneger>();
 
     }
-	public override void OnJoinedRoom()
-    {
-         
-	}
     // Update is called once per frame
     private void OnDisable()
     {
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
-         {
+        {
             PhotonNetwork.Destroy(this.gameObject);
-         }
+        }
     }
     void LateUpdate()
     {
@@ -54,7 +50,8 @@ public class Target : MonoBehaviourPunCallbacks
         }
         isTargeted = false;
     }
-
+    protected virtual void TargetAnimation()
+    { }
     public void Targeting()
     {
         isTargeted = true;

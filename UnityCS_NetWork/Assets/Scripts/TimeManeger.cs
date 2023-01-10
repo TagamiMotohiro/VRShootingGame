@@ -14,6 +14,7 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     TMPro.TextMeshProUGUI CountDownText;
     int startTime;
     int startTimeSec=0;
+    [SerializeField]
     int timeMin = 3;
     int countNum=3;
     int timesec;
@@ -53,6 +54,7 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     }
     void LoadResult()
     {
+        PhotonNetwork.Disconnect();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
     }
     void TextChengeColor()

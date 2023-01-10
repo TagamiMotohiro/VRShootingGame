@@ -8,17 +8,22 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     float instanceDistance=2;
-    public static float Player1score = 110;
-    public static float Player2score = 10;
+    public static float Player1score = 0;
+    public static float Player2score = 0;
     [SerializeField]
     TextMeshProUGUI scoreText;
     GameObject player;
     GameObject OVRcamera;
     GameObject RightHand;
-    // Start is called before the first frame update
-
-    void Start()
+	// Start is called before the first frame update
+	private void Awake()
+	{
+        //スコアが静的なので初期化
+	}
+	void Start()
     {
+        Player1score = 0;
+        Player2score = 0;
 		PhotonNetwork.IsMessageQueueRunning = true;
 		player = PhotonNetwork.Instantiate("VRPlayer", Vector3.zero, Quaternion.identity);
 		OVRcamera = GameObject.Find("OVRCameraRig");

@@ -7,6 +7,7 @@ using TMPro;
 public class MathMakeManeger : MonoBehaviourPunCallbacks
 {
 	[SerializeField] TextMeshProUGUI MatchMakeText;
+	bool isSoloMode = false;
 	private void Awake()
 	{
 		PhotonNetwork.AutomaticallySyncScene = true;
@@ -27,6 +28,11 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 		//部屋へ参加するがオブジェクト生成は別のシーンで行う
 		MatchMakeText.text = "部屋への参加に成功しました";
 		Debug.Log("部屋への参加に成功");
+		if (isSoloMode)
+		{ 
+			PhotonNetwork.LoadLevel("MainGame");
+			//ソロモードの場合は部屋に参加したら即ゲームへ遷移
+		}
 	}
 	public override void OnPlayerEnteredRoom(Player newPlayer)
 	{
@@ -44,4 +50,10 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 		PhotonNetwork.ConnectUsingSettings();
 	}
 	// Update is called once per frame
+	public void SoloMode()
+	{
+		PhotonNetwork.ConnectUsingSettings();
+		MatchMakeText.text = "一人で開始します";
+		isSoloMode = true;
+	}
 }

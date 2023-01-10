@@ -24,7 +24,7 @@ public class VRUImaneger : MonoBehaviour
     void SinglePlayerModeEntry()
     {
         ButtonSelectedAction();
-        SceneManager.LoadScene("MainGame");
+        this.GetComponent<MathMakeManeger>().SoloMode();
     }
     void MaltiPlayerModeEntry()
     {

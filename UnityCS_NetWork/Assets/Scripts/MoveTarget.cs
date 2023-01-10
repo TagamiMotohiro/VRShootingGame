@@ -14,11 +14,18 @@ public class MoveTarget : Target
 	void OnCollisionEnter(Collision collision)
 	{
         base.OnCollisionEnter(collision);
-        if (collision.gameObject.tag == "Player"||collision.gameObject.tag=="Shield")
+        if (collision.gameObject.tag == "Player")
         {
             if (collision.gameObject.GetComponent<PhotonView>().IsMine == false) { return; }
             PhotonNetwork.Destroy(this.gameObject);
             maneger.PlusScore(-2000);
+        }
+        else
+        if (collision.gameObject.tag == "Shield")
+        {
+            if (collision.gameObject.GetComponent<PhotonView>().IsMine == false) { return; }
+            PhotonNetwork.Destroy(this.gameObject);
+            maneger.PlusScore(200);
         }
 	}
 	// Update is called once per frame
