@@ -12594,7 +12594,7 @@ MonoBehaviour:
   TimeText: {fileID: 371216713}
   FinishText: {fileID: 1550989482}
   CountDownText: {fileID: 1687256309}
-  timeMin: 1
+  timeMin: 3
 --- !u!1 &1276924747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100678, guid: c925872ce3bfa384589bf34b953d5a65, type: 3}

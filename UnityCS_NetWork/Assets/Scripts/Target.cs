@@ -22,30 +22,35 @@ public class Target : MonoBehaviourPunCallbacks
     {
         halo = (Behaviour)gameObject.GetComponent("Halo");
         maneger = GameObject.Find("PUN2Script").GetComponent<MainGamePUNmaneger>();
-
     }
     // Update is called once per frame
     private void OnDisable()
     {
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
+           　//非アクティブ化したら消滅(消滅は部屋ホストが行う)
             PhotonNetwork.Destroy(this.gameObject);
         }
     }
     void LateUpdate()
     {
-        if (this.HP <= 0)
+        if (this.HP <= 0)//HPが0になったら
         {
             this.gameObject.SetActive(false);
+            //非アクティブ化
 			Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+            //爆発エフェクトを発動
 		}
         if (isTargeted)
         {
+            //自身が狙われたら
             if (halo == null) { return; }
             halo.enabled = true;
+            //発光
         }
         else
         {
+            //そうでない場合発光をやめる
             halo.enabled = false;
         }
         isTargeted = false;
@@ -66,14 +71,7 @@ public class Target : MonoBehaviourPunCallbacks
         //当たったオブジェクトのPhotonViewを取得
         if (Collision_photonView == null) { return; }//PhtonViewを持たないオブジェクトに当たった場合何もしない
         this.HP--;//自身の耐久値を減らす
-        if (Collision_photonView.IsMine) {//
-            if (collision.gameObject.tag == "Player")
-            {
-                this.HP = 0;
-                maneger.PlusScore(-deferted_Score);
-				Instantiate(DestroyEffect, transform.position, Quaternion.identity);
-				return;
-            }
+        if (Collision_photonView.IsMine) {
             maneger.PlusScore(hit_Score);
             if (this.HP <= 0)
             {

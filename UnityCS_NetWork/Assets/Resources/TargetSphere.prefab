@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 6158302908800447095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyEffect: {fileID: 1177040142265641561, guid: 66c817a0b714bd0448a2de23ed010cb9, type: 3}
   HP: 10
-  hit_Score: 100
-  deferted_Score: 1000
+  hit_Score: 200
+  deferted_Score: 2000
 --- !u!114 &7020484911925086701
 MonoBehaviour:
   m_ObjectHideFlags: 0

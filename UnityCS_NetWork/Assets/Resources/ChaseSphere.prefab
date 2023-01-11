@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyEffect: {fileID: 1177040142265641561, guid: 66c817a0b714bd0448a2de23ed010cb9, type: 3}
-  HP: 10
+  HP: 5
   hit_Score: 100
   deferted_Score: 1000
   chaseSpeed: 10
