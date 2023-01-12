@@ -8,7 +8,7 @@ public class Target : MonoBehaviourPunCallbacks
     [SerializeField]
     GameObject DestroyEffect;
     [SerializeField]
-    int HP;
+    protected int HP;
     [SerializeField]
     int hit_Score=100;
     [SerializeField]
@@ -36,7 +36,9 @@ public class Target : MonoBehaviourPunCallbacks
     {
         if (this.HP <= 0)//HPが0になったら
         {
+            //直接消滅させようとするとラグいため一旦非アクティブ化して後から消すことでごまかす
             this.gameObject.SetActive(false);
+            Debug.Log("消滅した");
             //非アクティブ化
 			Instantiate(DestroyEffect, transform.position, Quaternion.identity);
             //爆発エフェクトを発動
@@ -72,13 +74,25 @@ public class Target : MonoBehaviourPunCallbacks
         if (Collision_photonView == null) { return; }//PhtonViewを持たないオブジェクトに当たった場合何もしない
         this.HP--;//自身の耐久値を減らす
         if (Collision_photonView.IsMine) {
-            maneger.PlusScore(hit_Score);
+            if (collision.gameObject.tag == "Player")
+            {
+                this.HP = 0;
+                maneger.PlusScore(-deferted_Score);
+                //Instantiate(DestroyEffect,transform.position,Quaternion.identity);
+                return;
+            }
+            else
+            if (collision.gameObject.tag == "Shield")
+            {
+                this.HP = 0;
+                maneger.PlusScore(200);
+                return;
+            }
             if (this.HP <= 0)
             {
                 maneger.PlusScore(deferted_Score);
-                return;
             }
-        }
-        
+            maneger.PlusScore(hit_Score);
+        }     
 	}
 }

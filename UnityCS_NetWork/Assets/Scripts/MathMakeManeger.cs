@@ -19,8 +19,15 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 	}
 	public override void OnConnectedToMaster()
 	{
+		var roomProps = new ExitGames.Client.Photon.Hashtable();
+		roomProps["Player1Score"] = 0;
+		roomProps["Player2Score"] = 0;
+		//部屋のカスタムプロパティとしてプレイヤー1とプレイヤー２のスコアを設定
+		RoomOptions roomOptions = new RoomOptions();
+		roomOptions.MaxPlayers = 2;
+		roomOptions.CustomRoomProperties=roomProps;
 		Debug.Log("クライアントの接続に成功");
-		PhotonNetwork.JoinOrCreateRoom("Match",new RoomOptions(),TypedLobby.Default);
+		PhotonNetwork.JoinOrCreateRoom("Room1",roomOptions,TypedLobby.Default);
 	}
 	public override void OnJoinedRoom()
 	{
