@@ -8,8 +8,8 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     float instanceDistance=2;
-    public static float Player1score = 0;
-    public static float Player2score = 0;
+    public static int Player1score = 0;
+    public static int Player2score = 0;
     [SerializeField]
     TextMeshProUGUI scoreText;
     GameObject player;
@@ -52,13 +52,25 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
     }
     public void PlusScore(int plusScore)
     {
+        var roomProps = new ExitGames.Client.Photon.Hashtable();
         if (PhotonNetwork.IsMasterClient)
         {
             Player1score += plusScore;
+            roomProps["Player1Score"]=Player1score;
+            PhotonNetwork.LocalPlayer.SetCustomProperties(roomProps);
         }
         else
         {
             Player2score += plusScore;
-        }
+			roomProps["Player2Score"] = Player2score;
+            PhotonNetwork.LocalPlayer.SetCustomProperties(roomProps);
+		}
+    }
+    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
+    {
+        Player1score = (int)PhotonNetwork.CurrentRoom.CustomProperties["Player1Score"];
+        Player2score = (int)PhotonNetwork.CurrentRoom.CustomProperties["Player2Score"];
+        Debug.Log("Player1Score="+Player1score.ToString());
+        Debug.Log("Player2Score="+Player2score.ToString());
     }
 }

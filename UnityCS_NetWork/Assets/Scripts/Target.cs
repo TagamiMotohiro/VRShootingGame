@@ -24,20 +24,18 @@ public class Target : MonoBehaviourPunCallbacks
         maneger = GameObject.Find("PUN2Script").GetComponent<MainGamePUNmaneger>();
     }
     // Update is called once per frame
-    private void OnDisable()
+     public override void OnDisable()
     {
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
-        {
-           　//非アクティブ化したら消滅(消滅は部屋ホストが行う)
+           {
             PhotonNetwork.Destroy(this.gameObject);
-        }
+           }
     }
     void LateUpdate()
     {
         if (this.HP <= 0)//HPが0になったら
         {
-            //直接消滅させようとするとラグいため一旦非アクティブ化して後から消すことでごまかす
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
             Debug.Log("消滅した");
             //非アクティブ化
 			Instantiate(DestroyEffect, transform.position, Quaternion.identity);

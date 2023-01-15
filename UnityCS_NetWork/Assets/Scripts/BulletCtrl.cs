@@ -24,19 +24,13 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
         if (time >= 3)
         {
             if (!photonView.IsMine) { return; }
-            PhotonNetwork.Destroy(this.gameObject);
+            PhotonNetwork.Destroy(gameObject);
+            Instantiate(HitEffect, transform.position, Quaternion.identity);
         }
     }
-	private void OnDestroy()
-	{
-		Instantiate(HitEffect,transform.position,Quaternion.identity);
-	}
 	private void OnCollisionEnter(Collision collision)
     {
-        Destroy(gameObject);
-        if (collision.gameObject.tag == "Player")
-        {
-            collision.gameObject.SendMessage("damege");
-        }
+        if (!photonView.IsMine) { return; }
+        PhotonNetwork.Destroy(gameObject);
     }
 }
