@@ -16,7 +16,7 @@ public class VRUImaneger : MonoBehaviour
     {
         SinglePlayerModeButton.onClick.AddListener(() => SinglePlayerModeEntry());
         MaltiPlayerModeButton.onClick.AddListener(() => MaltiPlayerModeEntry());
-        Explain.onClick.AddListener(()=>MoveExplain());
+        //Explain.onClick.AddListener(()=>MoveExplain());
     }
     void ButtonSelectedAction()
     {
@@ -35,10 +35,14 @@ public class VRUImaneger : MonoBehaviour
     }
     void MoveExplain( ) {
         ExplainPanel.SetActive(true);
+        //C³’†
+        //if(OVRInput.GetDown(OVRInput.RawButton.A)) {
+        //        ExplainPanel.SetActive(false);
+        //    }
     }
     // Update is called once per frame
     void Update()
     {
-        
+        Explain.onClick.AddListener( ( ) => MoveExplain( ) );
     }
 }
