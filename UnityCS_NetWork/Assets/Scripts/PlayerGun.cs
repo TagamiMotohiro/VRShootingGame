@@ -52,9 +52,12 @@ public class PlayerGun : MonoBehaviourPunCallbacks
         Ray ray = new Ray(this.transform.position + this.transform.forward * 2, this.transform.forward);
         if (OVRInput.Get(OVRInput.Button.SecondaryHandTrigger))
         {
+            //右手トリガーを押している間
             magazine = 0;
+            //magazineを0に
             if (Physics.Raycast(ray, out hit, rayMask))
             {
+                //RayCastが当たったら当たったターゲットが発行
                 LockOn(hit);
             }
             myLR.enabled = true;
@@ -88,9 +91,8 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     }
     void SetPointer()
     {
-        //Aim時のポインターをセット
-        myLR.SetPosition(0, this.transform.position);
-        myLR.SetPosition(1, this.transform.position + this.transform.forward * lineRange);
+       myLR.SetPosition(0, this.transform.position);
+       myLR.SetPosition(1, this.transform.position + this.transform.forward * lineRange);
     }
 
 

@@ -170,6 +170,7 @@ MonoBehaviour:
   hit_Score: 100
   deferted_Score: 1000
   chaseSpeed: 10
+  defended_Effect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
 --- !u!54 &812367094558903777
 Rigidbody:
   m_ObjectHideFlags: 0
