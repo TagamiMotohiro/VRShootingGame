@@ -30,6 +30,7 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
     }
 	private void OnCollisionEnter(Collision collision)
     {
+        Instantiate(HitEffect,transform.position,Quaternion.identity);
         if (!photonView.IsMine) { return; }
         PhotonNetwork.Destroy(gameObject);
     }

@@ -15,7 +15,7 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     int startTime;
     int startTimeSec=0;
     [SerializeField]
-    int timeMin = 3;
+    int timeMin = 1;
     int countNum=3;
     int timesec;
     int latetimesec;

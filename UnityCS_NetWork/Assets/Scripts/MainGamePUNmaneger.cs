@@ -57,20 +57,20 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
         {
             Player1score += plusScore;
             roomProps["Player1Score"]=Player1score;
-            PhotonNetwork.LocalPlayer.SetCustomProperties(roomProps);
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
         }
         else
         {
             Player2score += plusScore;
 			roomProps["Player2Score"] = Player2score;
-            PhotonNetwork.LocalPlayer.SetCustomProperties(roomProps);
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
 		}
     }
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
         Player1score = (int)PhotonNetwork.CurrentRoom.CustomProperties["Player1Score"];
         Player2score = (int)PhotonNetwork.CurrentRoom.CustomProperties["Player2Score"];
-        Debug.Log("Player1Score="+Player1score.ToString());
-        Debug.Log("Player2Score="+Player2score.ToString());
+        Debug.Log("Player1="+(int)PhotonNetwork.CurrentRoom.CustomProperties["Player1Score"]);
+        Debug.Log("Player2="+(int)PhotonNetwork.CurrentRoom.CustomProperties["Player2Score"]);
     }
 }

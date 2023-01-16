@@ -12,7 +12,7 @@ public class Target : MonoBehaviourPunCallbacks
     [SerializeField]
     int hit_Score=100;
     [SerializeField]
-    int deferted_Score=1000;
+    protected int deferted_Score=1000;
     protected MainGamePUNmaneger maneger;
     bool isTargeted;
     bool sceneUnload = false;
@@ -72,21 +72,21 @@ public class Target : MonoBehaviourPunCallbacks
         if (Collision_photonView == null) { return; }//PhtonViewを持たないオブジェクトに当たった場合何もしない
         this.HP--;//自身の耐久値を減らす
         if (Collision_photonView.IsMine) {
-            if (collision.gameObject.tag == "Player")
-            {
-                this.HP = 0;
-                maneger.PlusScore(-deferted_Score);
-                //Instantiate(DestroyEffect,transform.position,Quaternion.identity);
-                return;
-            }
-            else
-            if (collision.gameObject.tag == "Shield")
-            {
-                this.HP = 0;
-                maneger.PlusScore(200);
-                return;
-            }
-            if (this.HP <= 0)
+			if (collision.gameObject.tag == "Player")
+			{
+				this.HP = 0;
+				maneger.PlusScore(-deferted_Score);
+				//Instantiate(DestroyEffect,transform.position,Quaternion.identity);
+				return;
+			}
+			else
+			if (collision.gameObject.tag == "Shield")
+			{
+				this.HP = 0;
+				maneger.PlusScore(200);
+				return;
+			}
+			if (this.HP <= 0)
             {
                 maneger.PlusScore(deferted_Score);
             }
