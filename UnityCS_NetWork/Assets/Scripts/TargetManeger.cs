@@ -47,28 +47,32 @@ public class TargetManeger : MonoBehaviourPunCallbacks
             cool_Time += Time.deltaTime;
             if (cool_Time <= late) { return; }
             if (!CheckLimit()) { return; }//•¦‚«ãŒÀ‚É’B‚µ‚½ê‡¶¬‚Íˆê’U‘Ò‚Â
+            Spawn();
+        }
+    }
+    public void Spawn()
+    { 
             cool_Time = 0;
-            float random_x = Random.Range(random_x_min,random_x_max);
-            float random_y = Random.Range(random_y_min,random_y_max);
-            float random_z = Random.Range(random_z_min,random_z_max);
-            int Random_Num = Random.Range(0,100);
+            float random_x = Random.Range(random_x_min, random_x_max);
+            float random_y = Random.Range(random_y_min, random_y_max);
+            float random_z = Random.Range(random_z_min, random_z_max);
+            int Random_Num = Random.Range(0, 100);
             //Šm—¦‚Å•ªŠò(’e‚ðŒ‚‚Á‚Ä‚­‚é•d‚¢Ž‡‚Ì“›‚ÍŠm—¦’á‚ß)
             if (Random_Num >= 0 && Random_Num <= 45)
             {
-                GameObject g =PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x,random_y,random_z),Quaternion.identity);
+                GameObject g = PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
             }
-            if (Random_Num >= 46 && Random_Num <= 50)
+            if (Random_Num >= 46 && Random_Num <= 80)
             {
-                GameObject g =PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+                GameObject g = PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
             }
-            if (Random_Num >= 51 && Random_Num <= 100)
+            if (Random_Num >= 81 && Random_Num <= 100)
             {
                 GameObject g = PhotonNetwork.Instantiate("Pipe", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
             }
-        }
     }
     bool CheckLimit()
     {

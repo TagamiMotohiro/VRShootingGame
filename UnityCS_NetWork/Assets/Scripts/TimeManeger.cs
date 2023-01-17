@@ -15,16 +15,29 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     int startTime;
     int startTimeSec=0;
     [SerializeField]
-    int timeMin = 1;
+    int firstSpawn;//ゲームスタート直後に生成する弾の数
+    [SerializeField]
+    int timeMin = 1;//残り時間(分)
     int countNum=3;
     int timesec;
     int latetimesec;
 
-    // Start is called before the first frame update
-    void Start()
+	// Start is called before the first frame update
+	private void Awake()
+	{
+        //プレイの開始時刻をプレイヤー間で共有するために部屋ホストのメインゲーム入室時間を
+        //プロパティ上に取得
+
+        //修正中
+        //if (!PhotonNetwork.IsMasterClient) { return; }
+        //var timeProps = new ExitGames.Client.Photon.Hashtable();
+        //timeProps["StartTime"] = PhotonNetwork.ServerTimestamp;
+        //PhotonNetwork.CurrentRoom.SetCustomProperties(timeProps);
+	}
+	void Start()
     {
+        //両プレイヤーで取得した時間を同期
         startTime = PhotonNetwork.ServerTimestamp;
-        //ゲームの開始時刻をサーバー上のタイムスタンプから取得(時間計測するうえで基準となる時間)
     }
 	public override void OnJoinedRoom()
 	{
@@ -83,11 +96,17 @@ public class TimeManeger : MonoBehaviourPunCallbacks
         //基本的には残り時間計測と同じ原理
         if (countNum <= 0)
         { 
-          //カウントが０になったら時間計測開始
+          //カウントが0になったら時間計測開始
           start = true;
           startTime= PhotonNetwork.ServerTimestamp;
           //時間計測用のタイムスタンプを更新
+          //すでに開始時間が同期されているためROMごとのずれはほぼない(はず)
           CountDownText.gameObject.SetActive(false);
+            for (int i = 0; i < 3; i++)
+            {
+                //ゲームが始まったら的を3つ生成
+                this.GetComponent<TargetManeger>().Spawn();
+            }
         }
 	}
 }

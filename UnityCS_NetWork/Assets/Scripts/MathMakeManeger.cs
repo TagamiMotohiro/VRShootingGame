@@ -22,6 +22,7 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 		var roomProps = new ExitGames.Client.Photon.Hashtable();
 		roomProps["Player1Score"] = 0;
 		roomProps["Player2Score"] = 0;
+		roomProps["StartTime"] = 0;
 		//部屋のカスタムプロパティとしてプレイヤー1とプレイヤー２のスコアを設定
 		RoomOptions roomOptions = new RoomOptions();
 		roomOptions.MaxPlayers = 2;

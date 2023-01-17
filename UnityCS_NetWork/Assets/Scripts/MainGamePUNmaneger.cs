@@ -19,6 +19,7 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
 	private void Awake()
 	{
         //スコアが静的なので初期化
+
 	}
 	void Start()
     {
@@ -65,6 +66,14 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
 			roomProps["Player2Score"] = Player2score;
             PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
 		}
+        if (plusScore <= 0)
+        {
+            scoreText.color = Color.red;
+        }
+        else
+        {
+            scoreText.color = Color.black;
+        }
     }
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
