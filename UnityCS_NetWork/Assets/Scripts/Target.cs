@@ -24,13 +24,10 @@ public class Target : MonoBehaviourPunCallbacks
         maneger = GameObject.Find("PUN2Script").GetComponent<MainGamePUNmaneger>();
     }
     // Update is called once per frame
-     public override void OnDisable()
-    {
-        if (PhotonNetwork.LocalPlayer.IsMasterClient)
-           {
-            PhotonNetwork.Destroy(this.gameObject);
-           }
-    }
+    // public override void OnDisable()
+    //{
+        
+    //}
     void LateUpdate()
     {
         if (this.HP <= 0)//HPが0になったら
@@ -40,6 +37,10 @@ public class Target : MonoBehaviourPunCallbacks
             //非アクティブ化
 			Instantiate(DestroyEffect, transform.position, Quaternion.identity);
             //爆発エフェクトを発動
+           　if (PhotonNetwork.LocalPlayer.IsMasterClient)
+           {
+            PhotonNetwork.Destroy(this.gameObject);
+           }
 		}
         if (isTargeted)
         {
@@ -72,7 +73,8 @@ public class Target : MonoBehaviourPunCallbacks
         if (Collision_photonView == null) { return; }//PhtonViewを持たないオブジェクトに当たった場合何もしない
         this.HP--;//自身の耐久値を減らす
         if (Collision_photonView.IsMine) {
-            Debug.Log(collision.gameObject.name);
+            maneger.PlusScore(hit_Score);
+			//         Debug.Log(collision.gameObject.name);
 			if (collision.gameObject.tag == "Player")
 			{
 				this.HP = 0;
@@ -80,18 +82,19 @@ public class Target : MonoBehaviourPunCallbacks
 				//Instantiate(DestroyEffect,transform.position,Quaternion.identity);
 				return;
 			}
-            //else
-            //if (collision.gameObject.tag == "Shield")
-            //{
-            //	this.HP = 0;
-            //	maneger.PlusScore(200);
-            //	return;
-            //}
-            if (this.HP <= 0)
+			else
+			if (collision.gameObject.tag == "Shield")
+			{
+				this.HP = 0;
+				maneger.PlusScore(200);
+				return;
+			}
+			if (this.HP <= 0)
             {
                 maneger.PlusScore(deferted_Score);
+                return;
             }
-            maneger.PlusScore(hit_Score);
+            
         }     
 	}
 }

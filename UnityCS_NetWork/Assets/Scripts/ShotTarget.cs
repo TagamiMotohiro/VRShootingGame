@@ -55,15 +55,19 @@ public class ShotTarget : Target
     {
         GameObject clossest = null;
         float minDistance = float.MaxValue;
-        foreach (GameObject g in Player_List)
+        foreach (GameObject g in Player_List)//取得したプレイヤーを参照してForeach
         {
-            float gPos = Mathf.Abs(transform.position.magnitude - g.transform.position.magnitude);
-            if (gPos < minDistance)
+            //自分の位置と相手の位置の絶対値を取得
+            float gPos = Mathf.Abs((transform.position-g.transform.position).magnitude);
+            if (gPos < minDistance)//位置の絶対値が現状最低値より低かった場合
             {
+                //狙いのプレイヤーを更新
                 clossest = g;
+                //最小距離を更新
                 minDistance = gPos;
             }
         }
+        //最終的に一番近かったプレイヤーを返す
         return clossest;
     }
     void LookAtTransformUp()
