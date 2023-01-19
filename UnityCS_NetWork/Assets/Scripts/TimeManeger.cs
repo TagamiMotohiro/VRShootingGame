@@ -27,24 +27,22 @@ public class TimeManeger : MonoBehaviourPunCallbacks
 	// Start is called before the first frame update
 	private void Awake()
 	{
-        //プレイの開始時刻をプレイヤー間で共有するために部屋ホストのメインゲーム入室時間を
-        //プロパティ上に取得
+		//プレイの開始時刻をプレイヤー間で共有するために部屋ホストのメインゲーム入室時間を
+		//プロパティ上に取得
 
-        //修正中
-        //if (!PhotonNetwork.IsMasterClient) { return; }
-        //var timeProps = new ExitGames.Client.Photon.Hashtable();
-        //timeProps["StartTime"] = PhotonNetwork.ServerTimestamp;
-        //PhotonNetwork.CurrentRoom.SetCustomProperties(timeProps);
+		//修正中
+		//if (!PhotonNetwork.IsMasterClient) { return; }
+		//var timeProps = new ExitGames.Client.Photon.Hashtable();
+		//timeProps["StartTime"] = PhotonNetwork.ServerTimestamp;
+		//PhotonNetwork.CurrentRoom.SetCustomProperties(timeProps);
+  //      Debug.Log("StartTime="+timeProps["StartTime"].ToString());
 	}
-	void Start()
+    void Start()
     {
-        //両プレイヤーで取得した時間を同期
-        startTime = PhotonNetwork.ServerTimestamp;
+        //マッチメイク時点で設定したゲーム開始時刻を全ROM間で同期
+        startTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
+        //Debug.Log((int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"]);
     }
-	public override void OnJoinedRoom()
-	{
-	  
-	}
 	// Update is called once per frame
 	void Update()
     {
@@ -109,7 +107,6 @@ public class TimeManeger : MonoBehaviourPunCallbacks
           start = true;
           startTime= PhotonNetwork.ServerTimestamp;
           //時間計測用のタイムスタンプを更新
-          //すでに開始時間が同期されているためROMごとのずれはほぼない(はず)
           CountDownText.gameObject.SetActive(false);
             for (int i = 0; i < 3; i++)
             {
@@ -118,4 +115,8 @@ public class TimeManeger : MonoBehaviourPunCallbacks
             }
         }
 	}
+	public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
+	{
+        startTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
+    }
 }
