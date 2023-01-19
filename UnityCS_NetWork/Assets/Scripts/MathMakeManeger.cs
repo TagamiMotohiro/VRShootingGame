@@ -28,7 +28,15 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 		roomOptions.MaxPlayers = 2;
 		roomOptions.CustomRoomProperties=roomProps;
 		Debug.Log("クライアントの接続に成功");
-		PhotonNetwork.JoinOrCreateRoom("Room1",roomOptions,TypedLobby.Default);
+		if (!isSoloMode)
+		{
+			PhotonNetwork.JoinOrCreateRoom("Room1", roomOptions, TypedLobby.Default);
+		}
+		else
+		{
+			roomOptions.MaxPlayers = 1;
+			PhotonNetwork.CreateRoom("SoloRoom",roomOptions,TypedLobby.Default);
+		}
 	}
 	public override void OnJoinedRoom()
 	{
@@ -37,7 +45,8 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 		MatchMakeText.text = "部屋への参加に成功しました";
 		Debug.Log("部屋への参加に成功");
 		if (isSoloMode)
-		{ 
+		{
+			SetTimeProps();
 			PhotonNetwork.LoadLevel("MainGame");
 			//ソロモードの場合は部屋に参加したら即ゲームへ遷移
 		}
@@ -48,6 +57,7 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 		{
 			MatchMakeText.text=("マッチングが完了しました！！");
 			Debug.Log("マッチメイキング完了");
+			SetTimeProps();
 			PhotonNetwork.LoadLevel("MainGame");
 		}
 	}
@@ -63,5 +73,15 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 		PhotonNetwork.ConnectUsingSettings();
 		MatchMakeText.text = "一人で開始します";
 		isSoloMode = true;
+	}
+	void SetTimeProps() 
+	{
+		//部屋ホストの入室時間を基準に同期用のゲーム開始時刻を設定
+		//こうすることによりゲーム終了時間の誤差がなくなる
+		if (!PhotonNetwork.IsMasterClient) { return; }
+		var timeProps = new ExitGames.Client.Photon.Hashtable();
+		timeProps["StartTime"] = PhotonNetwork.ServerTimestamp;
+		PhotonNetwork.CurrentRoom.SetCustomProperties(timeProps);
+		Debug.Log("StartTime=" + timeProps["StartTime"].ToString());
 	}
 }
