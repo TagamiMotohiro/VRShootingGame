@@ -44,8 +44,10 @@ public class MoveTarget : Target
         //目標プレイヤーに設定した速度で接近
         transform.position = Vector3.MoveTowards(transform.position,target.transform.position,chaseSpeed*Time.deltaTime);
     }
-
-    public void SetTarget(GameObject g)
+	protected override void TargetAnimation()
+	{
+	}
+	public void SetTarget(GameObject g)
     {
         //目標プレイヤーを設定
         target = g;

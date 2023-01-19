@@ -12,7 +12,9 @@ public class Target : MonoBehaviourPunCallbacks
     [SerializeField]
     int hit_Score=100;
     [SerializeField]
-    protected int deferted_Score=1000;
+    int deferted_Score=1000;
+    [SerializeField]
+    protected int anim_Speed=1;
     protected MainGamePUNmaneger maneger;
     bool isTargeted;
     bool sceneUnload = false;
@@ -30,6 +32,7 @@ public class Target : MonoBehaviourPunCallbacks
     //}
     void LateUpdate()
     {
+        TargetAnimation();
         if (this.HP <= 0)//HP‚ª0‚É‚È‚Á‚½‚ç
         {
             gameObject.SetActive(false);
@@ -57,7 +60,9 @@ public class Target : MonoBehaviourPunCallbacks
         isTargeted = false;
     }
     protected virtual void TargetAnimation()
-    { }
+    {
+        this.transform.Rotate(0, HP*Time.deltaTime, 0);
+    }
     public void Targeting()
     {
         isTargeted = true;

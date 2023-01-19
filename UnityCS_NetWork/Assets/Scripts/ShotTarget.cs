@@ -70,7 +70,11 @@ public class ShotTarget : Target
         //最終的に一番近かったプレイヤーを返す
         return clossest;
     }
-    void LookAtTransformUp()
+	protected override void TargetAnimation()
+	{
+		
+	}
+	void LookAtTransformUp()
     {
         this.transform.LookAt(LookPlayer.transform.position);
         this.transform.rotation = transform.rotation*Quaternion.AngleAxis(90,Vector3.right);
