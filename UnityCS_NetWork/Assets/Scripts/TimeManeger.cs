@@ -12,6 +12,8 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     TMPro.TextMeshProUGUI FinishText;
     [SerializeField]
     TMPro.TextMeshProUGUI CountDownText;
+    [SerializeField]
+    GameObject ExplainText;
     int startTime;
     int startTimeSec=0;
     [SerializeField]
@@ -46,6 +48,13 @@ public class TimeManeger : MonoBehaviourPunCallbacks
 	// Update is called once per frame
 	void Update()
     {
+        if (OVRInput.GetDown(OVRInput.RawButton.A))
+        {
+            ExplainText.SetActive(false);
+        }else if (OVRInput.GetDown(OVRInput.RawButton.B))
+        {
+            ExplainText.SetActive(true);
+        }
         CountDown();
         if (!start) { return; }
         int time =unchecked(PhotonNetwork.ServerTimestamp-startTime);
