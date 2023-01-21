@@ -21912,7 +21912,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2138126212}
-  - component: {fileID: 2138126211}
   - component: {fileID: 2138126213}
   m_Layer: 0
   m_Name: PUN2Script
@@ -21921,19 +21920,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2138126211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2138126210}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb16bb87dbe88dc439199e0208ca8429, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreText: {fileID: 1740194258}
 --- !u!4 &2138126212
 Transform:
   m_ObjectHideFlags: 0

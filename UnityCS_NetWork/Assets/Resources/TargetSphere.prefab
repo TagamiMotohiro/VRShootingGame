@@ -129,6 +129,7 @@ MonoBehaviour:
   HP: 10
   hit_Score: 200
   deferted_Score: 2000
+  anim_Speed: 1
 --- !u!114 &7020484911925086701
 MonoBehaviour:
   m_ObjectHideFlags: 0

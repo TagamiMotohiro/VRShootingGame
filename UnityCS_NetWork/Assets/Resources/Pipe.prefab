@@ -1432,6 +1432,7 @@ MonoBehaviour:
   HP: 50
   hit_Score: 100
   deferted_Score: 1000
+  anim_Speed: 1
   isStart: 1
   late: 10
   Player_List: []
