@@ -79,7 +79,5 @@ public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
     {
         Player1score = (int)PhotonNetwork.CurrentRoom.CustomProperties["Player1Score"];
         Player2score = (int)PhotonNetwork.CurrentRoom.CustomProperties["Player2Score"];
-        Debug.Log("Player1="+(int)PhotonNetwork.CurrentRoom.CustomProperties["Player1Score"]);
-        Debug.Log("Player2="+(int)PhotonNetwork.CurrentRoom.CustomProperties["Player2Score"]);
     }
 }

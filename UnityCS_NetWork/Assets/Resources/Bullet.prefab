@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
+  time: 0
 --- !u!114 &-8344314466535457567
 MonoBehaviour:
   m_ObjectHideFlags: 0

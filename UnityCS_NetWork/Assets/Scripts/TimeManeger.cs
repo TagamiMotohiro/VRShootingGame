@@ -56,6 +56,7 @@ public class TimeManeger : MonoBehaviourPunCallbacks
         CountDown();
         if (!start) { return; }
         int time =unchecked(PhotonNetwork.ServerTimestamp-startTime);
+        Debug.Log(time.ToString());
         //現在の経過時間(int型で1000ミリ秒単位)
         timesec = 59-(time/1000)%60;
         //59に現在の経過時間を秒数に直したものを引いて残り秒数を算出
@@ -83,7 +84,6 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     void LoadResult()
     {
         //リザルトシーンに遷移
-        PhotonNetwork.Disconnect();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
     }
     void TextChengeColor()//残り30秒になったら時間表示を赤くする
