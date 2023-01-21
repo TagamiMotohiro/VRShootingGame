@@ -73,12 +73,25 @@ public class TimeManeger : MonoBehaviourPunCallbacks
             TimeText.gameObject.SetActive(false);
             //残り時間表示を消す
             FinishText.gameObject.SetActive(true);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                //的を全消滅させる
+                TargetAllDestroy();   
+            }
             //FINISHのテキストを出す
             Invoke("LoadResult",3f);
             //FINISHを出した3秒後にリザルトへ遷移する関数を起動
         }
         TextChengeColor();
         latetimesec = timesec;
+    }
+    void TargetAllDestroy()
+    {
+        GameObject[] g = GameObject.FindGameObjectsWithTag("Target");
+        for (int i = 0; i < g.Length; i++)
+        {
+            PhotonNetwork.Destroy(g[i]);
+        }
     }
     void LoadResult()
     {
