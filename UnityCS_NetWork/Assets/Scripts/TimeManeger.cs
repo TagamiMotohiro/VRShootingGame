@@ -56,7 +56,6 @@ public class TimeManeger : MonoBehaviourPunCallbacks
         CountDown();
         if (!start) { return; }
         int time =unchecked(PhotonNetwork.ServerTimestamp-startTime);
-        Debug.Log(time.ToString());
         //Œ»İ‚ÌŒo‰ßŠÔ(intŒ^‚Å1000ƒ~ƒŠ•b’PˆÊ)
         timesec = 59-(time/1000)%60;
         //59‚ÉŒ»İ‚ÌŒo‰ßŠÔ‚ğ•b”‚É’¼‚µ‚½‚à‚Ì‚ğˆø‚¢‚Äc‚è•b”‚ğZo

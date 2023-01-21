@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class BulletCtrl : MonoBehaviourPunCallbacks
 {
-    GameObject target;
+    Vector3 target;
     [SerializeField]
     GameObject HitEffect;
     [SerializeField]
@@ -30,7 +30,7 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
             PhotonNetwork.Destroy(gameObject);
             Instantiate(HitEffect, transform.position, Quaternion.identity);
         }
-        //
+        //ホーミング機能をつけようと思ったがAimの必要性が下がるのでゲーム性を担保できない可能性がある
         //Homing();
     }
 	private void OnCollisionEnter(Collision collision)
@@ -42,16 +42,17 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
     void Homing()
     {
         if (!photonView.IsMine) { return; }
-        if (target == null)
+        if (target == new Vector3())
         { this.transform.position += transform.forward; }
         else
         {
-            Vector3 velocity = (transform.position - target.transform.position).normalized;
+            Vector3 velocity = (target-transform.position).normalized;
             this.transform.position += (velocity*30)*Time.deltaTime;
         }
     }
-    public void SetTarget(GameObject g)
+    public void SetTarget(Vector3 pos)
     {
-        target = g;
+        if (target == null) { return; }
+        target = pos;
     }
 }

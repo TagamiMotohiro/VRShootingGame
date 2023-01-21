@@ -21,7 +21,7 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     [SerializeField]
     LayerMask rayMask;
     GameObject go;
-    GameObject aim_Target;
+    Vector3 aim_Target;
     LineRenderer myLR;
     RaycastHit hit;
     // Start is called before the first frame update
@@ -64,7 +64,7 @@ public class PlayerGun : MonoBehaviourPunCallbacks
             else
             {
                 //Hitしていなければ対象はなしに
-                aim_Target = null;
+                aim_Target = new Vector3();
             }
             //狙いの線を表示
             myLR.enabled = true;
@@ -110,7 +110,7 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     {
         Debug.Log(aim_Target);
         GameObject g = PhotonNetwork.Instantiate("Bullet", this.transform.position,transform.rotation);
-        //射撃時に追尾対象を設定
+        ////射撃時に追尾対象を設定
         //g.GetComponent<BulletCtrl>().SetTarget(aim_Target);
         g.GetComponent<Rigidbody>().AddForce(this.transform.forward * velocity, ForceMode.Impulse);
     }
@@ -130,7 +130,11 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     void LockOn(RaycastHit hit)
     {
         //ロックした的のクラスを取得
-        Target t = hit.collider.gameObject.GetComponent<Target>();
+        if (hit.collider.tag != "Target") { return; }
+        Debug.Log(hit.collider.gameObject.name);
+        GameObject g = hit.collider.gameObject;
+        //aim_Target = hit.point;
+        Target t = g.GetComponent<Target>();
         if (t == null) { return; }
         //的側で自身を光らせる処理を行う
         t.Targeting();
