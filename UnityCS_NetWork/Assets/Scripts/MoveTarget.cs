@@ -8,8 +8,8 @@ public class MoveTarget : Target
     GameObject target;
     [SerializeField]
     float chaseSpeed;
-	[SerializeField]
-	GameObject defended_Effect;
+	//[SerializeField]
+	//GameObject defended_Effect;
 	//Start is called before the first frame update
 
 	//void OnCollisionEnter(Collision collision)

@@ -165,13 +165,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d0764ae0705924e8cf6cd03924890b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Defended_Effect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
   DestroyEffect: {fileID: 1177040142265641561, guid: 66c817a0b714bd0448a2de23ed010cb9, type: 3}
   HP: 5
   hit_Score: 100
   deferted_Score: 1000
   anim_Speed: 1
   chaseSpeed: 10
-  defended_Effect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
 --- !u!54 &812367094558903777
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -7939,7 +7939,7 @@ BoxCollider:
   m_GameObject: {fileID: 772199741}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -12485,8 +12485,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210521147}
   m_LocalRotation: {x: -0, y: 0.031070113, z: -0, w: 0.99951726}
-  m_LocalPosition: {x: 30.62, y: 40.698, z: 23.9}
-  m_LocalScale: {x: 40.01861, y: 32.673443, z: 295.2291}
+  m_LocalPosition: {x: 28.6, y: 31.2, z: -10.7}
+  m_LocalScale: {x: 40.01861, y: 23.038044, z: 295.2291}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1513081995}
@@ -12825,7 +12825,7 @@ BoxCollider:
   m_GameObject: {fileID: 1248445530}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -13212,7 +13212,7 @@ MonoBehaviour:
   TimeText: {fileID: 371216713}
   FinishText: {fileID: 1550989482}
   CountDownText: {fileID: 1687256309}
-  ExplainText: {fileID: 0}
+  ExplainText: {fileID: 1691523377}
   firstSpawn: 0
   timeMin: 1
 --- !u!1 &1276924747 stripped
@@ -15804,7 +15804,7 @@ BoxCollider:
   m_GameObject: {fileID: 1513081994}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -16644,7 +16644,7 @@ BoxCollider:
   m_GameObject: {fileID: 1583384584}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -20006,7 +20006,7 @@ BoxCollider:
   m_GameObject: {fileID: 1874611791}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
