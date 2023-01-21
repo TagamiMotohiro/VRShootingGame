@@ -16,7 +16,7 @@ public class GetScore : MainGamePUNmaneger {
         score_text1.text=MainGamePUNmaneger.Player1score.ToString();
         TextMeshProUGUI score_text2 = score_object2.GetComponent<TextMeshProUGUI>( );
         score_text2.text = MainGamePUNmaneger.Player2score.ToString();
-        
+        PhotonNetwork.Disconnect();
     }
 
     // Update is called once per frame

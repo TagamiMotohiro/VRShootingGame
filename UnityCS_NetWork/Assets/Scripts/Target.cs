@@ -104,6 +104,6 @@ public class Target : MonoBehaviourPunCallbacks
                 return;
             }
             maneger.PlusScore(hit_Score);
-        }     
+        }
 	}
 }

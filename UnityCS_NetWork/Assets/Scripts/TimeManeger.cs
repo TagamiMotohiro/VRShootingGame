@@ -96,7 +96,6 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     void LoadResult()
     {
         //リザルトシーンに遷移
-        PhotonNetwork.Disconnect();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
     }
     void TextChengeColor()//残り30秒になったら時間表示を赤くする
