@@ -14,7 +14,7 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 	}
 	public override void OnJoinedLobby()
 	{
-		MatchMakeText.text = "ロビーへの参加に成功しました";
+		MatchMakeText.text = PhotonNetwork.CurrentLobby.Name+"参加に成功しました";
 		Debug.Log("ロビーの参加に成功");
 	}
 	public override void OnConnectedToMaster()
@@ -34,15 +34,15 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 		}
 		else
 		{
-			roomOptions.MaxPlayers = 1;
-			PhotonNetwork.CreateRoom("SoloRoom",roomOptions,TypedLobby.Default);
+			//PhotonNetwork.CurrentRoom.MaxPlayers = 1;
+			PhotonNetwork.CreateRoom(null,roomOptions,TypedLobby.Default);
 		}
 	}
 	public override void OnJoinedRoom()
 	{
 		//PhotonNetwork.IsMessageQueueRunning = false;
 		//部屋へ参加するがオブジェクト生成は別のシーンで行う
-		MatchMakeText.text = "部屋への参加に成功しました";
+		MatchMakeText.text = PhotonNetwork.CurrentRoom.Name+"に入室しました";
 		Debug.Log("部屋への参加に成功");
 		if (isSoloMode)
 		{
@@ -55,9 +55,8 @@ public class MathMakeManeger : MonoBehaviourPunCallbacks
 	{
 		if (PhotonNetwork.LocalPlayer.IsMasterClient)
 		{
-			MatchMakeText.text=("マッチングが完了しました！！");
-			Debug.Log("マッチメイキング完了");
-			SetTimeProps();
+			MatchMakeText.text = ("マッチングが完了しました！！");
+			//SetTimeProps();
 			PhotonNetwork.LoadLevel("MainGame");
 		}
 	}

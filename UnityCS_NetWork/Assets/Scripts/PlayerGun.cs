@@ -5,13 +5,19 @@ using Photon.Pun;
 
 public class PlayerGun : MonoBehaviourPunCallbacks
 {
+    enum GUN_STATE :int{ 
+        RAPID=0,
+        SHOTGUN=1
+    }
+    GUN_STATE state=GUN_STATE.RAPID;
+    int state_num=0;
     bool stert = false;
     float Charge = 0;
     public GameObject Bullet;
     public float velocity;
     public float lineRange;
-    int magazine=0;
     float coolTime=0;
+    int magazine=0;
     [SerializeField]
     float maxCharge;
     [SerializeField]
@@ -43,9 +49,23 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     {
         if (stert)
         {
+            SwichState();
             SetPointer();
             ChargeCtrl();
             CubeTransForm();
+        }
+    }
+    void SwichState()
+    {
+        //銃口タイプ変更
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            //ステート番号をプラス
+            state_num++;
+            //番号に合わせてステータスを変更
+            state = (GUN_STATE)(state_num%System.Enum.GetValues(typeof(GUN_STATE)).Length);
+            //magazineを０に
+            magazine = 0;
         }
     }
     void ChargeCtrl()
@@ -86,14 +106,31 @@ public class PlayerGun : MonoBehaviourPunCallbacks
             {
                 if (coolTime >= late)
                 {
-                    //magazineがなくなるまで弾発射
-                    Fire();
-                    coolTime = 0;
-                    magazine--;
+                    switch (state) {
+                    case GUN_STATE.RAPID:
+                        //magazineがなくなるまで弾発射
+                        Fire(transform.position);
+                        coolTime = 0;
+                        magazine--;
+                    break;
+                    case GUN_STATE.SHOTGUN:
+                        ShotGun();
+                    break;
+                    }
                 }
             }
         }
         coolTime+=Time.deltaTime;
+    }
+    void ShotGun()
+    {
+        for (int x=-1;x<2;x++)
+        {
+            for (int y=-1;y<2;y++) {
+                Fire(new Vector3(transform.position.x+(x*0.1f),transform.position.y+(y*0.1f),transform.position.z));
+            }
+        }
+        magazine = 0;
     }
     void CubeTransForm()
     {
@@ -106,10 +143,10 @@ public class PlayerGun : MonoBehaviourPunCallbacks
        myLR.SetPosition(0, this.transform.position);
        myLR.SetPosition(1, this.transform.position + this.transform.forward * lineRange);
     }
-    void Fire()
+    void Fire(Vector3 pos)
     {
         Debug.Log(aim_Target);
-        GameObject g = PhotonNetwork.Instantiate("Bullet", this.transform.position,transform.rotation);
+        GameObject g = PhotonNetwork.Instantiate("Bullet",pos,transform.rotation);
         ////射撃時に追尾対象を設定
         //g.GetComponent<BulletCtrl>().SetTarget(aim_Target);
         g.GetComponent<Rigidbody>().AddForce(this.transform.forward * velocity, ForceMode.Impulse);
