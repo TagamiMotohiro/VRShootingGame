@@ -5,11 +5,11 @@ using Photon.Pun;
 
 public class PlayerGun : MonoBehaviourPunCallbacks
 {
-    enum GUN_STATE :int{ 
+    public enum GUN_STATE :int{ 
         RAPID=0,
         SHOTGUN=1
     }
-    GUN_STATE state=GUN_STATE.RAPID;
+    public GUN_STATE state { get; private set; } = GUN_STATE.RAPID;
     int state_num=0;
     bool stert = false;
     float Charge = 0;
