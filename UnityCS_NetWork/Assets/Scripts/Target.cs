@@ -19,7 +19,7 @@ public class Target : MonoBehaviourPunCallbacks
     protected int anim_Speed=1;
     protected MainGamePUNmaneger maneger;
     bool isTargeted;
-    bool sceneUnload = false;
+    bool destroyed = false;
     Behaviour halo;
     // Start is called before the first frame update
     protected void Start()
@@ -69,10 +69,6 @@ public class Target : MonoBehaviourPunCallbacks
     {
         isTargeted = true;
     }
-    private void OnApplicationQuit()
-    {
-        sceneUnload = true;
-    }
 	public void OnCollisionEnter(Collision collision)
 	{   
         PhotonView Collision_photonView = collision.gameObject.GetComponent<PhotonView>();
@@ -97,10 +93,11 @@ public class Target : MonoBehaviourPunCallbacks
 				maneger.PlusScore(200);
 				return;
 			}
-			if (this.HP <= 0)
+			if (this.HP <= 0&&!destroyed)
             {
                 //Instantiate(DestroyEffect, transform.position, Quaternion.identity);
                 maneger.PlusScore(deferted_Score);
+                destroyed = true;
                 return;
             }
             maneger.PlusScore(hit_Score);

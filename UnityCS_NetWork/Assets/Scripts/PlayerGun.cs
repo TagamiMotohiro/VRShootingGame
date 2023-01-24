@@ -109,7 +109,7 @@ public class PlayerGun : MonoBehaviourPunCallbacks
                     switch (state) {
                     case GUN_STATE.RAPID:
                         //magazine‚ª‚È‚­‚È‚é‚Ü‚Å’e”­ŽË
-                        Fire(transform.position);
+                        Fire(transform.position,transform.forward);
                         coolTime = 0;
                         magazine--;
                     break;
@@ -124,11 +124,23 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     }
     void ShotGun()
     {
-        for (int x=-1;x<2;x++)
+        float drag = 0.1f;
+        Vector3 pos = transform.position;
+        Vector3 dragX= -transform.right*drag;
+        Vector3 dragY = -transform.up*drag;
+        for (int x=0;x<4;x++)
         {
-            for (int y=-1;y<2;y++) {
-                Fire(new Vector3(transform.position.x+(x*0.1f),transform.position.y+(y*0.1f),transform.position.z));
+            for (int y=0;y<3;y++) {
+                pos += dragX + dragY;
+                //ŽU’e‚È‚Ì‚Åƒ‰ƒ“ƒ_ƒ€‚ÉƒxƒNƒgƒ‹‚ðŽZo
+                var dir = new Vector3(transform.forward.x+Random.Range(-drag*0.1f,drag*0.1f),
+                                      transform.forward.y+Random.Range(-drag*0.1f,drag*0.1f),
+                                      transform.forward.z+Random.Range(-drag*0.1f,drag*0.1f));
+                Fire(pos,dir);
+                dragY += transform.up*drag;
             }
+            dragY = -transform.up * drag;
+            dragX = dragX + transform.right*drag;
         }
         magazine = 0;
     }
@@ -143,13 +155,13 @@ public class PlayerGun : MonoBehaviourPunCallbacks
        myLR.SetPosition(0, this.transform.position);
        myLR.SetPosition(1, this.transform.position + this.transform.forward * lineRange);
     }
-    void Fire(Vector3 pos)
+    void Fire(Vector3 pos,Vector3 forcevec)
     {
         Debug.Log(aim_Target);
         GameObject g = PhotonNetwork.Instantiate("Bullet",pos,transform.rotation);
         ////ŽËŒ‚Žž‚É’Ç”ö‘ÎÛ‚ðÝ’è
         //g.GetComponent<BulletCtrl>().SetTarget(aim_Target);
-        g.GetComponent<Rigidbody>().AddForce(this.transform.forward * velocity, ForceMode.Impulse);
+        g.GetComponent<Rigidbody>().AddForce(forcevec * velocity, ForceMode.Impulse);
     }
     void EnelgyCharge()
     {
