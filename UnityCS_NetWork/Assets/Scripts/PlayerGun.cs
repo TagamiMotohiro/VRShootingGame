@@ -128,10 +128,10 @@ public class PlayerGun : MonoBehaviourPunCallbacks
         Vector3 pos = transform.position;
         Vector3 dragX= -transform.right*drag;
         Vector3 dragY = -transform.up*drag;
-        for (int x=0;x<4;x++)
+        for (int x=0;x<3;x++)
         {
             for (int y=0;y<3;y++) {
-                pos += dragX + dragY;
+                pos += dragY;
                 //ŽU’e‚È‚Ì‚Åƒ‰ƒ“ƒ_ƒ€‚ÉƒxƒNƒgƒ‹‚ðŽZo
                 var dir = new Vector3(transform.forward.x+Random.Range(-drag*0.1f,drag*0.1f),
                                       transform.forward.y+Random.Range(-drag*0.1f,drag*0.1f),
@@ -139,8 +139,9 @@ public class PlayerGun : MonoBehaviourPunCallbacks
                 Fire(pos,dir);
                 dragY += transform.up*drag;
             }
-            dragY = -transform.up * drag;
-            dragX = dragX + transform.right*drag;
+            dragY = -transform.up*drag;
+            dragX += transform.right*drag;
+            pos += dragX;
         }
         magazine = 0;
     }

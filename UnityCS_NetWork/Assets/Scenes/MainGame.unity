@@ -5853,7 +5853,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.177, y: -0.1482}
+  m_AnchoredPosition: {x: 0.177, y: -0.09}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &591342724
@@ -12885,6 +12885,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300368, guid: c925872ce3bfa384589bf34b953d5a65, type: 3}
+--- !u!4 &1233967464 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7041786442796626877, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+  m_PrefabInstance: {fileID: 7041786442729276786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1234448355 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100378, guid: c925872ce3bfa384589bf34b953d5a65, type: 3}
@@ -23394,6 +23399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state_Text: {fileID: 867645671}
+  camerapos: {fileID: 1233967464}
 --- !u!4 &7041786442729276790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7041786442434176182, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}

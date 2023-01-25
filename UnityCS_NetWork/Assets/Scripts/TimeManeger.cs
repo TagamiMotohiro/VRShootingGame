@@ -110,7 +110,12 @@ public class TimeManeger : MonoBehaviourPunCallbacks
         //ゲーム開始までのカウントダウン
         if (start) { return; }
 		int time = unchecked(PhotonNetwork.ServerTimestamp - startTime);
-        countNum = 3-(time / 1000)%60;
+        countNum = 5-(time / 1000)%60;
+        if (countNum >= 4)
+        {
+            CountDownText.text = "READY";
+            return;
+        }
         CountDownText.text = countNum.ToString();
         //基本的には残り時間計測と同じ原理
         if (countNum <= 0)

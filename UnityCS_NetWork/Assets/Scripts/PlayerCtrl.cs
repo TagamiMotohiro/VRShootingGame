@@ -15,7 +15,7 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
         { 
             this.gameObject.layer = 6;
         }
-        OVRcamera = GameObject.Find("Camera");
+        OVRcamera = GameObject.Find("OVRCameraRig");
     }
 
     // Update is called once per frame

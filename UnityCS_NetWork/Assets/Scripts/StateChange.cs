@@ -8,6 +8,8 @@ public class StateChange : MonoBehaviour
     PlayerGun.GUN_STATE state; 
     [SerializeField]
     TMPro.TextMeshProUGUI state_Text;
+    [SerializeField]
+    Transform camerapos;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,8 @@ public class StateChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TextLookAt();
+        //state_Text.gameObject.transform.LookAt(camerapos);
         state = gun_Script.state;
         switch (state)
         {
@@ -26,5 +30,10 @@ public class StateChange : MonoBehaviour
                 state_Text.text = "SHOTGUN";
                 break;
         }
+    }
+    void TextLookAt()
+    {
+        state_Text.transform.LookAt(camerapos);
+        state_Text.transform.rotation = state_Text.transform.rotation * Quaternion.AngleAxis(180,state_Text.transform.up);
     }
 }
