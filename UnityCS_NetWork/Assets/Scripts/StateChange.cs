@@ -34,6 +34,5 @@ public class StateChange : MonoBehaviour
     void TextLookAt()
     {
         state_Text.transform.LookAt(camerapos);
-        state_Text.transform.rotation = state_Text.transform.rotation * Quaternion.AngleAxis(180,state_Text.transform.up);
     }
 }
