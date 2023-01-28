@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
-public class MathMakeManeger : MonoBehaviourPunCallbacks
+public class MatchMakeManeger : MonoBehaviourPunCallbacks
 {
 	[SerializeField] TextMeshProUGUI MatchMakeText;
 	bool isSoloMode = false;

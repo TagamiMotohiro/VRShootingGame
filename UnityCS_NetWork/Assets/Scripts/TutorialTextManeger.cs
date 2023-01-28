@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TutorialTextManeger : MonoBehaviour
 {
+    bool text_isActive = true;
     [SerializeField]
     GameObject canvas;
     [SerializeField]
@@ -28,7 +29,10 @@ public class TutorialTextManeger : MonoBehaviour
             SetLine(text[i], anchor[i], textLR[i]);
         }
         if (OVRInput.GetDown(OVRInput.Button.Two)) {
-            canvas.SetActive(!canvas.activeSelf);
+            text_isActive = !text_isActive;
+            for (int i=0;i<text.Count;i++) {
+                text[i].gameObject.SetActive(text_isActive);
+            }
         }
     }
     void SetLine(Transform textPos,Transform anchor,LineRenderer lr) {

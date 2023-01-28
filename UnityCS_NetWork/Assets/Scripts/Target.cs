@@ -17,6 +17,9 @@ public class Target : MonoBehaviourPunCallbacks
     int deferted_Score=1000;
     [SerializeField]
     protected int anim_Speed=1;
+    [SerializeField]
+    AudioClip DestroySE;
+    AudioSource myAS;
     protected MainGamePUNmaneger maneger;
     bool isTargeted;
     bool destroyed = false;
@@ -24,6 +27,7 @@ public class Target : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     protected void Start()
     {
+        myAS = gameObject.GetComponent<AudioSource>();
         halo = (Behaviour)gameObject.GetComponent("Halo");
         maneger = GameObject.Find("PUN2Script").GetComponent<MainGamePUNmaneger>();
     }
@@ -97,6 +101,7 @@ public class Target : MonoBehaviourPunCallbacks
             {
                 //Instantiate(DestroyEffect, transform.position, Quaternion.identity);
                 maneger.PlusScore(deferted_Score);
+                myAS.PlayOneShot(DestroySE);
                 destroyed = true;
                 return;
             }

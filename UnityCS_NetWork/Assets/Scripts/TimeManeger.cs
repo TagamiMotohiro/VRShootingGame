@@ -35,12 +35,13 @@ public class TimeManeger : MonoBehaviourPunCallbacks
 		//var timeProps = new ExitGames.Client.Photon.Hashtable();
 		//timeProps["StartTime"] = PhotonNetwork.ServerTimestamp;
 		//PhotonNetwork.CurrentRoom.SetCustomProperties(timeProps);
-  //      Debug.Log("StartTime="+timeProps["StartTime"].ToString());
+        //Debug.Log("StartTime="+timeProps["StartTime"].ToString());
+       startTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
 	}
     void Start()
     {
         //マッチメイク時点で設定したゲーム開始時刻を全ROM間で同期
-        startTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
+       
         //Debug.Log((int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"]);
     }
 	// Update is called once per frame
@@ -125,7 +126,8 @@ public class TimeManeger : MonoBehaviourPunCallbacks
           startTime= PhotonNetwork.ServerTimestamp;
           //時間計測用のタイムスタンプを更新
           CountDownText.gameObject.SetActive(false);
-            for (int i = 0; i < 3; i++)
+            if (!PhotonNetwork.IsMasterClient) { return; }
+            for (int i = 0; i < firstSpawn; i++)
             {
                 //ゲームが始まったら的を3つ生成
                 this.GetComponent<TargetManeger>().Spawn();

@@ -11,27 +11,30 @@ public class VRUImaneger : MonoBehaviour
     [SerializeField] Button MaltiPlayerModeButton;
     [SerializeField] Button Explain;
     [SerializeField] GameObject ExplainPanel;
+    [SerializeField] AudioClip selected_SE;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = this.GetComponent<AudioSource>();
         SinglePlayerModeButton.onClick.AddListener(() => SinglePlayerModeEntry());
         MaltiPlayerModeButton.onClick.AddListener(() => MaltiPlayerModeEntry());
-        //Explain.onClick.AddListener(()=>MoveExplain());
     }
     void ButtonSelectedAction()
     {
         SinglePlayerModeButton.gameObject.SetActive(false);
         MaltiPlayerModeButton.gameObject.SetActive(false);
+        audioSource.PlayOneShot(selected_SE);
     }
     void SinglePlayerModeEntry()
     {
         ButtonSelectedAction();
-        this.GetComponent<MathMakeManeger>().SoloMode();
+        this.GetComponent<MatchMakeManeger>().SoloMode();
     }
     void MaltiPlayerModeEntry()
     {
         ButtonSelectedAction();
-        this.GetComponent<MathMakeManeger>().StartConect();
+        this.GetComponent<MatchMakeManeger>().StartConect();
     }
     void MoveExplain( ) {
         ExplainPanel.SetActive(true);

@@ -133,9 +133,9 @@ public class PlayerGun : MonoBehaviourPunCallbacks
             for (int y=0;y<3;y++) {
                 pos += dragY;
                 //ŽU’e‚È‚Ì‚Åƒ‰ƒ“ƒ_ƒ€‚ÉƒxƒNƒgƒ‹‚ðŽZo
-                var dir = new Vector3(transform.forward.x+Random.Range(-drag*0.2f,drag*0.2f),
-                                      transform.forward.y+Random.Range(-drag*0.2f,drag*0.2f),
-                                      transform.forward.z+Random.Range(-drag*0.2f,drag*0.2f));
+                var dir = new Vector3(transform.forward.x+Random.Range(-drag*0.1f,drag*0.1f),
+                                      transform.forward.y+Random.Range(-drag*0.1f,drag*0.1f),
+                                      transform.forward.z+Random.Range(-drag*0.1f,drag*0.1f));
                 Fire(pos,dir);
                 dragY += transform.up*drag;
             }
