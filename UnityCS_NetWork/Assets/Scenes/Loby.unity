@@ -761,7 +761,7 @@ MonoBehaviour:
   MaltiPlayerModeButton: {fileID: 1554731465}
   Explain: {fileID: 1279820918}
   ExplainPanel: {fileID: 616524022}
-  selected_SE: {fileID: 8300000, guid: 055319f4a8aa9714a92068f2b5afbc2f, type: 3}
+  selected_SE: {fileID: 8300000, guid: 135621e5eb74b9a4ca7e64e37cd1e429, type: 3}
 --- !u!4 &443103882
 Transform:
   m_ObjectHideFlags: 0

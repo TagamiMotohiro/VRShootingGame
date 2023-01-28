@@ -27,7 +27,7 @@ public class Target : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     protected void Start()
     {
-        myAS = gameObject.GetComponent<AudioSource>();
+        myAS = this.gameObject.GetComponent<AudioSource>();
         halo = (Behaviour)gameObject.GetComponent("Halo");
         maneger = GameObject.Find("PUN2Script").GetComponent<MainGamePUNmaneger>();
     }

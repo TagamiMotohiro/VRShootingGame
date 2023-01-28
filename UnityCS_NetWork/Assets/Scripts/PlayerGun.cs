@@ -13,7 +13,6 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     int state_num=0;
     bool stert = false;
     float Charge = 0;
-    public GameObject Bullet;
     public float velocity;
     public float lineRange;
     float coolTime=0;
@@ -26,6 +25,9 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     float late=0.1f;
     [SerializeField]
     LayerMask rayMask;
+    [SerializeField]
+    AudioClip Shot_SE;
+    AudioSource myAS;
     GameObject go;
     Vector3 aim_Target;
     LineRenderer myLR;
@@ -34,6 +36,7 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     void Start()
     {
         //コンポーネント取得＆チャージを示すキューブを生成
+        myAS = this.gameObject.GetComponent<AudioSource>();
         myLR = GetComponent<LineRenderer>();
         go = PhotonNetwork.Instantiate("27Cube", this.transform.position, Quaternion.identity);
     }
@@ -109,11 +112,13 @@ public class PlayerGun : MonoBehaviourPunCallbacks
                     switch (state) {
                     case GUN_STATE.RAPID:
                         //magazineがなくなるまで弾発射
+                        myAS.PlayOneShot(Shot_SE);
                         Fire(transform.position,transform.forward);
                         coolTime = 0;
                         magazine--;
                     break;
                     case GUN_STATE.SHOTGUN:
+                        myAS.PlayOneShot(Shot_SE);
                         ShotGun();
                     break;
                     }
