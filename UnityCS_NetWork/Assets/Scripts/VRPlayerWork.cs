@@ -61,7 +61,10 @@ public class VRPlayerWork : MonoBehaviour
     }
 
 
-    private void Update() { }
+    private void Update()
+    { 
+        
+    }
 
 
     private void CharacterMoveByHandShake()

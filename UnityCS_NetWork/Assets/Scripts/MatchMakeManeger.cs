@@ -8,6 +8,7 @@ public class MatchMakeManeger : MonoBehaviourPunCallbacks
 {
 	[SerializeField] TextMeshProUGUI MatchMakeText;
 	bool isSoloMode = false;
+
 	private void Awake()
 	{
 		PhotonNetwork.AutomaticallySyncScene = true;
@@ -34,15 +35,16 @@ public class MatchMakeManeger : MonoBehaviourPunCallbacks
 		}
 		else
 		{
-			PhotonNetwork.CreateRoom(null,roomOptions,TypedLobby.Default);
+			PhotonNetwork.CreateRoom("Solo",roomOptions,TypedLobby.Default);
 		}
 	}
 	public override void OnJoinedRoom(){
-		MatchMakeText.text = PhotonNetwork.CurrentRoom.Name+"に入室しました";
+		MatchMakeText.text = "部屋に入室しました";
 		Debug.Log("部屋への参加に成功");
 		if (isSoloMode)
 		{
-			SetTimeProps();
+			//SetTimeProps();
+			Debug.Log(PhotonNetwork.CurrentRoom.CustomProperties["StartTime"]);
 			PhotonNetwork.LoadLevel("MainGame");
 			//ソロモードの場合は部屋に参加したら即ゲームへ遷移
 		}
@@ -78,7 +80,6 @@ public class MatchMakeManeger : MonoBehaviourPunCallbacks
 			var timeProps = new ExitGames.Client.Photon.Hashtable();
 			timeProps["StartTime"] = PhotonNetwork.ServerTimestamp;
 			PhotonNetwork.CurrentRoom.SetCustomProperties(timeProps);
-			Debug.Log("StartTime=" + timeProps["StartTime"].ToString());
 		}
 	}
 }

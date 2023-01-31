@@ -7670,14 +7670,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.31478453, y: -0, z: -0, w: 0.9491632}
+  m_LocalRotation: {x: 0.9035021, y: -0, z: -0, w: 0.42858374}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 36.696, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 129.245, y: 0, z: 0}
 --- !u!1 &705635970 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 101182, guid: c925872ce3bfa384589bf34b953d5a65, type: 3}
@@ -14146,7 +14146,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40977b6171b813b45a112d210a0ebf19, type: 2}
+  - {fileID: 2100000, guid: ad1733214eddbd441a71766543745b82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19571,7 +19571,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 40977b6171b813b45a112d210a0ebf19, type: 2}
+  - {fileID: 2100000, guid: ad1733214eddbd441a71766543745b82, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -23958,7 +23958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7041786442719894624, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
       propertyPath: m_Height
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7041786442719894624, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
       propertyPath: m_Radius
@@ -23966,6 +23966,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7041786442719894624, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
       propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041786442719894626, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041786442719894627, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: SnapRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041786442719894627, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: EnableRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041786442719894627, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: RotationAmount
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041786442719894627, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: RotationEitherThumbstick
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7041786442796396443, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}

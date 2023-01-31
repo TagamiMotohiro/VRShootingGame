@@ -44,12 +44,12 @@ public class Target : MonoBehaviourPunCallbacks
             gameObject.SetActive(false);
             Debug.Log("消滅した");
             //非アクティブ化
-			//Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+            //Instantiate(DestroyEffect, transform.position, Quaternion.identity);
             //爆発エフェクトを発動
-           　if (PhotonNetwork.LocalPlayer.IsMasterClient)
-           {
-            PhotonNetwork.Destroy(this.gameObject);
-           }
+            if (photonView.IsMine)
+            {
+                PhotonNetwork.Destroy(this.gameObject);
+            }
 		}
         if (isTargeted)
         {
@@ -79,7 +79,7 @@ public class Target : MonoBehaviourPunCallbacks
         //当たったオブジェクトのPhotonViewを取得
         if (Collision_photonView == null) { return; }//PhtonViewを持たないオブジェクトに当たった場合何もしない
         this.HP--;//自身の耐久値を減らす
-        if (Collision_photonView.IsMine) {
+        if (Collision_photonView.IsMine&&!destroyed) {
 			//         Debug.Log(collision.gameObject.name);
 			if (collision.gameObject.tag == "Player")
 			{
@@ -94,12 +94,15 @@ public class Target : MonoBehaviourPunCallbacks
 			{
 				this.HP = 0;
                 Instantiate(Defended_Effect, transform.position, Quaternion.identity);
-				maneger.PlusScore(200);
+				maneger.PlusScore(deferted_Score/4);
 				return;
 			}
-			if (this.HP <= 0&&!destroyed)
+			if (this.HP <= 0)
             {
                 //Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+                //的を破壊したプレイヤーに所有権を委譲
+                //破壊したプレイヤーにオブジェクトの破棄を担当してもらう
+                photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
                 maneger.PlusScore(deferted_Score);
                 myAS.PlayOneShot(DestroySE);
                 destroyed = true;

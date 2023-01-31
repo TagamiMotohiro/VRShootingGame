@@ -6,6 +6,7 @@ using Photon.Pun;
 public class TimeManeger : MonoBehaviourPunCallbacks
 {
     bool start = false;
+    bool timeset = false;
     [SerializeField]
     TMPro.TextMeshProUGUI TimeText;
     [SerializeField]
@@ -17,32 +18,30 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     int startTime;
     int startTimeSec=0;
     [SerializeField]
-    int firstSpawn;//ゲームスタート直後に生成する弾の数
+    int firstSpawn;//ゲームスタート直後に生成するターゲットの数
     [SerializeField]
     int timeMin = 1;//残り時間(分)
-    int countNum=3;
+    int countNum;
     int timesec;
     int latetimesec;
 
 	// Start is called before the first frame update
 	private void Awake()
 	{
-		//プレイの開始時刻をプレイヤー間で共有するために部屋ホストのメインゲーム入室時間を
-		//プロパティ上に取得
-
-		//修正中
-		//if (!PhotonNetwork.IsMasterClient) { return; }
-		//var timeProps = new ExitGames.Client.Photon.Hashtable();
-		//timeProps["StartTime"] = PhotonNetwork.ServerTimestamp;
-		//PhotonNetwork.CurrentRoom.SetCustomProperties(timeProps);
-        //Debug.Log("StartTime="+timeProps["StartTime"].ToString());
-       startTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
+        if (PhotonNetwork.IsMasterClient) 
+        {
+            var timeProps = new ExitGames.Client.Photon.Hashtable();
+            timeProps["StartTime"] = PhotonNetwork.ServerTimestamp;
+            Debug.Log("<color=red>NowTime=" + timeProps["StartTime"] + "</color>");
+            Debug.Log("<color=red>StartTime=" + PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] + "</color>");
+            PhotonNetwork.CurrentRoom.SetCustomProperties(timeProps);
+            Debug.Log("<color=red>StartTime=" + PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] + "</color>");
+        }
 	}
     void Start()
     {
-        //マッチメイク時点で設定したゲーム開始時刻を全ROM間で同期
-       
-        //Debug.Log((int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"]);
+        //ゲーム開始時刻を全ROM間で同期
+        
     }
 	// Update is called once per frame
 	void Update()
@@ -108,10 +107,11 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     }
     void CountDown()
     {
+        if (start||!timeset) { CountDownText.text = "READY";return; }
+        Debug.Log("<color=yellow>StartTime=" + startTime + "</color>");
         //ゲーム開始までのカウントダウン
-        if (start) { return; }
-		int time = unchecked(PhotonNetwork.ServerTimestamp - startTime);
-        countNum = 5-(time / 1000)%60;
+        int time = unchecked(PhotonNetwork.ServerTimestamp - startTime);
+        countNum = 4 - (time / 1000) % 60;
         if (countNum >= 4)
         {
             CountDownText.text = "READY";
@@ -120,22 +120,27 @@ public class TimeManeger : MonoBehaviourPunCallbacks
         CountDownText.text = countNum.ToString();
         //基本的には残り時間計測と同じ原理
         if (countNum <= 0)
-        { 
-          //カウントが0になったら時間計測開始
-          start = true;
-          startTime= PhotonNetwork.ServerTimestamp;
-          //時間計測用のタイムスタンプを更新
-          CountDownText.gameObject.SetActive(false);
+        {
+            //カウントが0になったら時間計測開始
+            start = true;
+            startTime = PhotonNetwork.ServerTimestamp;
+            //時間計測用のタイムスタンプを更新
+            CountDownText.gameObject.SetActive(false);
             if (!PhotonNetwork.IsMasterClient) { return; }
             for (int i = 0; i < firstSpawn; i++)
             {
-                //ゲームが始まったら的を3つ生成
+                //ゲームが始まったら的を設定した数生成
                 this.GetComponent<TargetManeger>().Spawn();
             }
         }
-	}
+    }
 	public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
 	{
         startTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
+        Debug.Log("<color=blue>StartTime=" + PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] + "</color>");
+        if (startTime == 0)//プロパティを作った時にも変更したコールバックを受け取っている(?)みたいなので
+                           //0の状態でコールバックを受け取っても一旦待つ
+        { return; }
+        timeset = true;
     }
 }
