@@ -53,22 +53,28 @@ public class TargetManeger : MonoBehaviourPunCallbacks
     public void Spawn()
     { 
             cool_Time = 0;
+            //•¦‚«ˆÊ’u‚ÍRange“à‚©‚çƒ‰ƒ“ƒ_ƒ€‚ÅŒˆ’è
             float random_x = Random.Range(random_x_min, random_x_max);
             float random_y = Random.Range(random_y_min, random_y_max);
             float random_z = Random.Range(random_z_min, random_z_max);
             int Random_Num = Random.Range(0, 100);
-            //Šm—¦‚Å•ªŠò(’e‚ğŒ‚‚Á‚Ä‚­‚é•d‚¢‡‚Ì“›‚ÍŠm—¦’á‚ß)
-            if (Random_Num >= 0 && Random_Num <= 45)
+            //Šm—¦‚Å•ªŠò
+            if (Random_Num >= 0 && Random_Num <= 30)
             {
                 GameObject g = PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
             }
-            if (Random_Num >= 46 && Random_Num <= 80)
+            if (Random_Num >= 31 && Random_Num <= 60)
             {
                 GameObject g = PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
             }
-            if (Random_Num >= 81 && Random_Num <= 100)
+            if (Random_Num >= 61 && Random_Num <= 84)
+            {
+            GameObject g = PhotonNetwork.Instantiate("Pipe (Blue)", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+            targetList.Add(g);
+            }
+            if (Random_Num >= 85 && Random_Num <= 100)
             {
                 GameObject g = PhotonNetwork.Instantiate("Pipe", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);

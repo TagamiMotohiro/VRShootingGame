@@ -90,7 +90,14 @@ public class PlayerGun : MonoBehaviourPunCallbacks
                 aim_Target = new Vector3();
             }
             //狙いの線を表示
-            myLR.enabled = true;
+            if (Charge >= maxCharge)
+            {
+                myLR.enabled = true;
+            }
+            else
+            {
+                myLR.enabled = false;
+            }
             //チャージ
             EnelgyCharge();
         }

@@ -13608,7 +13608,7 @@ MonoBehaviour:
   FinishText: {fileID: 1550989482}
   CountDownText: {fileID: 1687256309}
   ExplainText: {fileID: 1691523377}
-  firstSpawn: 5
+  firstSpawn: 3
   timeMin: 1
 --- !u!1 &1276924747 stripped
 GameObject:
@@ -23948,6 +23948,26 @@ PrefabInstance:
       propertyPath: maxMagazine
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 7041786442434221659, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041786442434221659, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 63fc8dcb58b3ef54c97c0a75c45906c4, type: 2}
+    - target: {fileID: 7041786442434221659, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041786442434221659, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041786442434221659, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7041786442440982296, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
       propertyPath: m_controller
       value: 2
@@ -24058,7 +24078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7041786442797087847, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 927
+      value: 1951
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3092406993924673869, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}

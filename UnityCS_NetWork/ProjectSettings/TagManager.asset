@@ -9,6 +9,7 @@ TagManager:
   - Mine
   - Shield
   - Target
+  - Ground
   layers:
   - Default
   - TransparentFX

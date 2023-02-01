@@ -75,12 +75,19 @@ public class Target : MonoBehaviourPunCallbacks
     }
 	public void OnCollisionEnter(Collision collision)
 	{   
+        //謎だったら何もせず消滅
+        if (collision.gameObject.tag == "Untagged")
+        {
+            if (photonView.IsMine)
+            {
+                PhotonNetwork.Destroy(gameObject);
+            }
+        }
         PhotonView Collision_photonView = collision.gameObject.GetComponent<PhotonView>();
         //当たったオブジェクトのPhotonViewを取得
         if (Collision_photonView == null) { return; }//PhtonViewを持たないオブジェクトに当たった場合何もしない
         this.HP--;//自身の耐久値を減らす
         if (Collision_photonView.IsMine&&!destroyed) {
-			//         Debug.Log(collision.gameObject.name);
 			if (collision.gameObject.tag == "Player")
 			{
 				this.HP = 0;
@@ -110,5 +117,6 @@ public class Target : MonoBehaviourPunCallbacks
             }
             maneger.PlusScore(hit_Score);
         }
+        
 	}
 }

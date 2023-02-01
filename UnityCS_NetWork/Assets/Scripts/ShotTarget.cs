@@ -15,13 +15,16 @@ public class ShotTarget : Target
     float late = 10f;
     float coolTime;
     GameObject firePos;
-    [SerializeField]
     List<GameObject> Player_List;
+    [SerializeField]
+    GameObject FirePrefub;
+    string FirePrefub_Name;
     GameObject LookPlayer;
     LineRenderer myLR;
     // Start is called before the first frame update
     void Start()
     {
+        FirePrefub_Name = FirePrefub.name;
         if (PhotonNetwork.IsConnected)
         {
             isStart = true;
@@ -44,7 +47,7 @@ public class ShotTarget : Target
         {
             coolTime = 0;
             if (PhotonNetwork.LocalPlayer.IsMasterClient == false) { return; }
-            GameObject g = PhotonNetwork.Instantiate("ChaseSphere", firePos.transform.position, Quaternion.identity);
+            GameObject g = PhotonNetwork.Instantiate(FirePrefub_Name, firePos.transform.position, transform.rotation);
             //クールタイムが終わったら弾を生成
             g.GetComponent<MoveTarget>().SetTarget(LookPlayer);
             //その際弾に今向いているプレイヤーの情報を代入

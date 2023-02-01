@@ -127,9 +127,9 @@ public class TimeManeger : MonoBehaviourPunCallbacks
             //時間計測用のタイムスタンプを更新
             CountDownText.gameObject.SetActive(false);
             if (!PhotonNetwork.IsMasterClient) { return; }
-            for (int i = 0; i < firstSpawn; i++)
+            for (int i = 0; i < firstSpawn*PhotonNetwork.CurrentRoom.Players.Count; i++)
             {
-                //ゲームが始まったら的を設定した数生成
+                //ゲームが始まったら的を設定した数*プレイヤー数分生成
                 this.GetComponent<TargetManeger>().Spawn();
             }
         }
