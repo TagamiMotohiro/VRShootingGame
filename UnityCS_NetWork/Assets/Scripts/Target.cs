@@ -20,7 +20,7 @@ public class Target : MonoBehaviourPunCallbacks
     [SerializeField]
     AudioClip DestroySE;
     AudioSource myAS;
-    protected MainGamePUNmaneger maneger;
+    protected ScoreManeger maneger;
     bool isTargeted;
     bool destroyed = false;
     Behaviour halo;
@@ -29,7 +29,7 @@ public class Target : MonoBehaviourPunCallbacks
     {
         myAS = this.gameObject.GetComponent<AudioSource>();
         halo = (Behaviour)gameObject.GetComponent("Halo");
-        maneger = GameObject.Find("PUN2Script").GetComponent<MainGamePUNmaneger>();
+        maneger = GameObject.Find("PUN2Script").GetComponent<ScoreManeger>();
     }
     // Update is called once per frame
     // public override void OnDisable()
@@ -41,11 +41,8 @@ public class Target : MonoBehaviourPunCallbacks
         TargetAnimation();
         if (this.HP <= 0)//HPが0になったら
         {
-            gameObject.SetActive(false);
             Debug.Log("消滅した");
             //非アクティブ化
-            //Instantiate(DestroyEffect, transform.position, Quaternion.identity);
-            //爆発エフェクトを発動
             if (photonView.IsMine)
             {
                 PhotonNetwork.Destroy(this.gameObject);
@@ -94,7 +91,6 @@ public class Target : MonoBehaviourPunCallbacks
                 Instantiate(DestroyEffect, transform.position, Quaternion.identity);
                 maneger.PlusScore(-deferted_Score);
 				//Instantiate(DestroyEffect,transform.position,Quaternion.identity);
-				return;
 			}
 			else
 			if (collision.gameObject.tag == "Shield")
@@ -102,7 +98,6 @@ public class Target : MonoBehaviourPunCallbacks
 				this.HP = 0;
                 Instantiate(Defended_Effect, transform.position, Quaternion.identity);
 				maneger.PlusScore(deferted_Score/4);
-				return;
 			}
 			if (this.HP <= 0)
             {

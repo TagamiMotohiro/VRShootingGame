@@ -59,26 +59,28 @@ public class TargetManeger : MonoBehaviourPunCallbacks
             float random_z = Random.Range(random_z_min, random_z_max);
             int Random_Num = Random.Range(0, 100);
             //Šm—¦‚Å•ªŠò
+            GameObject g;
             if (Random_Num >= 0 && Random_Num <= 30)
             {
-                GameObject g = PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+                g = PhotonNetwork.Instantiate("TargetSphere", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
             }
             if (Random_Num >= 31 && Random_Num <= 60)
             {
-                GameObject g = PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+                g = PhotonNetwork.Instantiate("TargetCube", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
             }
             if (Random_Num >= 61 && Random_Num <= 84)
             {
-            GameObject g = PhotonNetwork.Instantiate("Pipe (Blue)", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+                g = PhotonNetwork.Instantiate("Pipe (Blue)", new Vector3(random_x, random_y, random_z), Quaternion.identity);
             targetList.Add(g);
             }
             if (Random_Num >= 85 && Random_Num <= 100)
             {
-                GameObject g = PhotonNetwork.Instantiate("Pipe", new Vector3(random_x, random_y, random_z), Quaternion.identity);
+                g = PhotonNetwork.Instantiate("Pipe", new Vector3(random_x, random_y, random_z), Quaternion.identity);
                 targetList.Add(g);
             }
+        
     }
     bool CheckLimit()
     {

@@ -30,7 +30,7 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
             PhotonNetwork.Destroy(gameObject);
             Instantiate(HitEffect, transform.position, Quaternion.identity);
         }
-        //ホーミング機能をつけようと思ったがAimの必要性が下がるのでゲーム性を担保できない可能性がある
+        //ホーミング機能をつけようと思ったがAimの必要性が下がりゲーム性を担保できない可能性があるため保留
         //Homing();
     }
 	private void OnCollisionEnter(Collision collision)

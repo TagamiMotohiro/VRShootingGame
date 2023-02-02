@@ -24,23 +24,23 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     int countNum;
     int timesec;
     int latetimesec;
+    TargetManeger t;
 
 	// Start is called before the first frame update
 	private void Awake()
 	{
+        //ゲーム開始時刻を全ROM間で同期するためにホストが開始時間を取得
         if (PhotonNetwork.IsMasterClient) 
         {
             var timeProps = new ExitGames.Client.Photon.Hashtable();
             timeProps["StartTime"] = PhotonNetwork.ServerTimestamp;
-            Debug.Log("<color=red>NowTime=" + timeProps["StartTime"] + "</color>");
-            Debug.Log("<color=red>StartTime=" + PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] + "</color>");
             PhotonNetwork.CurrentRoom.SetCustomProperties(timeProps);
-            Debug.Log("<color=red>StartTime=" + PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] + "</color>");
         }
+        t = this.GetComponent<TargetManeger>();
 	}
     void Start()
     {
-        //ゲーム開始時刻を全ROM間で同期
+        
         
     }
 	// Update is called once per frame
@@ -79,7 +79,7 @@ public class TimeManeger : MonoBehaviourPunCallbacks
                 TargetAllDestroy();   
             }
             //FINISHのテキストを出す
-            Invoke("LoadResult",3f);
+            StartCoroutine(LoadResult(3f));
             //FINISHを出した3秒後にリザルトへ遷移する関数を起動
         }
         TextChengeColor();
@@ -93,10 +93,12 @@ public class TimeManeger : MonoBehaviourPunCallbacks
             PhotonNetwork.Destroy(g[i]);
         }
     }
-    void LoadResult()
+    IEnumerator LoadResult(float waitTime)
     {
         //リザルトシーンに遷移
+        yield return new WaitForSeconds(waitTime);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Result");
+        yield break;
     }
     void TextChengeColor()//残り30秒になったら時間表示を赤くする
     {
@@ -124,20 +126,20 @@ public class TimeManeger : MonoBehaviourPunCallbacks
             //カウントが0になったら時間計測開始
             start = true;
             startTime = PhotonNetwork.ServerTimestamp;
-            //時間計測用のタイムスタンプを更新
+            //時間計測用のタイムスタンプを更新(前に同期しているのでここでの取得はずれがない)
             CountDownText.gameObject.SetActive(false);
             if (!PhotonNetwork.IsMasterClient) { return; }
             for (int i = 0; i < firstSpawn*PhotonNetwork.CurrentRoom.Players.Count; i++)
             {
                 //ゲームが始まったら的を設定した数*プレイヤー数分生成
-                this.GetComponent<TargetManeger>().Spawn();
+                t.Spawn();
             }
         }
     }
 	public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
 	{
+        //開始時間を共有
         startTime = (int)PhotonNetwork.CurrentRoom.CustomProperties["StartTime"];
-        Debug.Log("<color=blue>StartTime=" + PhotonNetwork.CurrentRoom.CustomProperties["StartTime"] + "</color>");
         if (startTime == 0)//プロパティを作った時にも変更したコールバックを受け取っている(?)みたいなので
                            //0の状態でコールバックを受け取っても一旦待つ
         { return; }

@@ -79,6 +79,7 @@ public class ShotTarget : Target
 	}
 	void LookAtTransformUp()
     {
+        //LookAt‚É’Ç‰Á‚µ‚Ä©•ª‚ÌÆ€‚ªƒvƒŒƒCƒ„[‚ÉŒü‚­‚æ‚¤‚É‚·‚é
         this.transform.LookAt(LookPlayer.transform.position);
         this.transform.rotation = transform.rotation*Quaternion.AngleAxis(90,Vector3.right);
         myLR.SetPosition(0,firePos.transform.position);
