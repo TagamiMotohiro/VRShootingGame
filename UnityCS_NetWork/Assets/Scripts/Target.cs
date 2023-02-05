@@ -20,8 +20,12 @@ public class Target : MonoBehaviourPunCallbacks
     [SerializeField]
     AudioClip DestroySE;
     [SerializeField]
+    AudioClip Player_Hit_SE;
+    [SerializeField]
     AudioClip Hit_SE;
-    AudioSource myAS;
+    [SerializeField]
+    AudioClip Guard_SE;
+    AudioManeger audioManeger;
     protected ScoreManeger maneger;
     bool isTargeted;
     bool destroyed = false;
@@ -29,9 +33,10 @@ public class Target : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     protected void Start()
     {
-        myAS = this.gameObject.GetComponent<AudioSource>();
+        //タグで検索したほうが速いらしいのでタグで検索
+        audioManeger = GameObject.FindWithTag("Audio").GetComponent<AudioManeger>();
         halo = (Behaviour)gameObject.GetComponent("Halo");
-        maneger = GameObject.Find("PUN2Script").GetComponent<ScoreManeger>();
+        maneger = GameObject.FindWithTag("PUN2Maneger").GetComponent<ScoreManeger>();
     }
     // Update is called once per frame
     // public override void OnDisable()
@@ -44,7 +49,6 @@ public class Target : MonoBehaviourPunCallbacks
         if (this.HP <= 0)//HPが0になったら
         {
             Debug.Log("消滅した");
-            //非アクティブ化
             if (photonView.IsMine)
             {
                 PhotonNetwork.Destroy(this.gameObject);
@@ -90,8 +94,9 @@ public class Target : MonoBehaviourPunCallbacks
 			if (collision.gameObject.tag == "Player")
 			{
 				this.HP = 0;
+                destroyed = true;
                 Instantiate(DestroyEffect, transform.position, Quaternion.identity);
-                myAS.PlayOneShot(Hit_SE);
+                audioManeger.PlaySE(Player_Hit_SE);
                 maneger.PlusScore(-deferted_Score);
                 photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
                 return;
@@ -101,6 +106,8 @@ public class Target : MonoBehaviourPunCallbacks
 			if (collision.gameObject.tag == "Shield")
 			{
 				this.HP = 0;
+                destroyed = true;
+                audioManeger.PlaySE(Guard_SE);
                 Instantiate(Defended_Effect, transform.position, Quaternion.identity);
 				maneger.PlusScore(deferted_Score/4);
                 photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
@@ -113,10 +120,11 @@ public class Target : MonoBehaviourPunCallbacks
                 //破壊したプレイヤーにオブジェクトの破棄を担当してもらう
                 photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
                 maneger.PlusScore(deferted_Score);
-                myAS.PlayOneShot(DestroySE);
                 destroyed = true;
+                audioManeger.PlaySE(DestroySE);
                 return;
             }
+            audioManeger.PlaySE(Hit_SE);
             maneger.PlusScore(hit_Score);
         }
         

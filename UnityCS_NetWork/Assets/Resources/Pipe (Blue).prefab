@@ -1196,7 +1196,9 @@ MonoBehaviour:
   deferted_Score: 2000
   anim_Speed: 1
   DestroySE: {fileID: 8300000, guid: 055319f4a8aa9714a92068f2b5afbc2f, type: 3}
-  Hit_SE: {fileID: 8300000, guid: 5d75a44da6af1314c9ac3af065b29847, type: 3}
+  Player_Hit_SE: {fileID: 8300000, guid: 5d75a44da6af1314c9ac3af065b29847, type: 3}
+  Hit_SE: {fileID: 8300000, guid: 6a3ef96f8dd09814f91689ff51c56308, type: 3}
+  Guard_SE: {fileID: 8300000, guid: 01096500368d19a45927c6d12bb1766c, type: 3}
   isStart: 1
   late: 10
   FirePrefub: {fileID: 5214667086528605431, guid: d165a1225f17a1244891b44b052150f4, type: 3}
@@ -1361,7 +1363,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1394,7 +1396,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

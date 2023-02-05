@@ -10,11 +10,15 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
     GameObject HitEffect;
     [SerializeField]
     float time=0;
+    bool layerIsSet=false;
     // Start is called before the first frame update
     void Start()
     {
         if (!photonView.IsMine)
         {
+            //©•ª‚ÌŒ‚‚Á‚½’eo‚È‚©‚Á‚½ê‡
+            //“G‚Ì’e—p‚ÌƒŒƒCƒ„[‚Éİ’è
+            layerIsSet = true;
             this.gameObject.layer = 10;
         }
     }
@@ -35,6 +39,7 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
     }
 	private void OnCollisionEnter(Collision collision)
     {
+        if (!layerIsSet) { return; }
         Instantiate(HitEffect,transform.position,Quaternion.identity);
         if (!photonView.IsMine) { return; }
         PhotonNetwork.Destroy(gameObject);
