@@ -19,6 +19,8 @@ public class Target : MonoBehaviourPunCallbacks
     protected int anim_Speed=1;
     [SerializeField]
     AudioClip DestroySE;
+    [SerializeField]
+    AudioClip Hit_SE;
     AudioSource myAS;
     protected ScoreManeger maneger;
     bool isTargeted;
@@ -89,7 +91,10 @@ public class Target : MonoBehaviourPunCallbacks
 			{
 				this.HP = 0;
                 Instantiate(DestroyEffect, transform.position, Quaternion.identity);
+                myAS.PlayOneShot(Hit_SE);
                 maneger.PlusScore(-deferted_Score);
+                photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
+                return;
 				//Instantiate(DestroyEffect,transform.position,Quaternion.identity);
 			}
 			else
@@ -98,6 +103,8 @@ public class Target : MonoBehaviourPunCallbacks
 				this.HP = 0;
                 Instantiate(Defended_Effect, transform.position, Quaternion.identity);
 				maneger.PlusScore(deferted_Score/4);
+                photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
+                return;
 			}
 			if (this.HP <= 0)
             {

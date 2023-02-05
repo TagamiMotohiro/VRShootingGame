@@ -62,8 +62,7 @@ public class VRPlayerWork : MonoBehaviour
 
 
     private void Update()
-    { 
-        
+    {
     }
 
 

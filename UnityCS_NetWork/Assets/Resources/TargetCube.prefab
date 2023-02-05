@@ -133,6 +133,7 @@ MonoBehaviour:
   deferted_Score: 1000
   anim_Speed: 3
   DestroySE: {fileID: 8300000, guid: 135621e5eb74b9a4ca7e64e37cd1e429, type: 3}
+  Hit_SE: {fileID: 8300000, guid: 5d75a44da6af1314c9ac3af065b29847, type: 3}
 --- !u!114 &-343957061483113358
 MonoBehaviour:
   m_ObjectHideFlags: 0

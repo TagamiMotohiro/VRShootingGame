@@ -27,6 +27,8 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     LayerMask rayMask;
     [SerializeField]
     AudioClip Shot_SE;
+    [SerializeField]
+    AudioClip Charge_SE;
     AudioSource myAS;
     GameObject go;
     Vector3 aim_Target;
@@ -119,12 +121,14 @@ public class PlayerGun : MonoBehaviourPunCallbacks
                     switch (state) {
                     case GUN_STATE.RAPID:
                         //magazine‚ª‚È‚­‚È‚é‚Ü‚Å’e”­ŽË
+                        myAS.volume = 0.25f;
                         myAS.PlayOneShot(Shot_SE);
                         Fire(transform.position,transform.forward);
                         coolTime = 0;
                         magazine--;
                     break;
                     case GUN_STATE.SHOTGUN:
+                        myAS.volume = 0.5f;
                         myAS.PlayOneShot(Shot_SE);
                         ShotGun();
                     break;
@@ -179,6 +183,7 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     void EnelgyCharge()
     {
         Charge += 3 * Time.deltaTime;
+
         if (Charge > maxCharge)
         {
             Charge = maxCharge;

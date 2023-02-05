@@ -1436,6 +1436,7 @@ MonoBehaviour:
   deferted_Score: 3000
   anim_Speed: 1
   DestroySE: {fileID: 8300000, guid: 055319f4a8aa9714a92068f2b5afbc2f, type: 3}
+  Hit_SE: {fileID: 8300000, guid: 5d75a44da6af1314c9ac3af065b29847, type: 3}
   isStart: 1
   late: 10
   FirePrefub: {fileID: 1893074748003115777, guid: 3e883668c7c1bc645a5cb50f9c3e6a8c, type: 3}

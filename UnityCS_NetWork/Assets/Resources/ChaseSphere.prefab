@@ -173,6 +173,7 @@ MonoBehaviour:
   deferted_Score: 1000
   anim_Speed: 1
   DestroySE: {fileID: 8300000, guid: 055319f4a8aa9714a92068f2b5afbc2f, type: 3}
+  Hit_SE: {fileID: 8300000, guid: 5d75a44da6af1314c9ac3af065b29847, type: 3}
   chaseSpeed: 10
 --- !u!54 &6321680502518526367
 Rigidbody:

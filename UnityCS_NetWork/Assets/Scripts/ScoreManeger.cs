@@ -19,6 +19,7 @@ public class ScoreManeger : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(Player1score);
         if (PhotonNetwork.IsMasterClient)
         {
             scoreText.text = Player1score.ToString();

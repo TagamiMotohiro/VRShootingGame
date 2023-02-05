@@ -22,7 +22,7 @@ public class ShotTarget : Target
     GameObject LookPlayer;
     LineRenderer myLR;
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
         FirePrefub_Name = FirePrefub.name;
         if (PhotonNetwork.IsConnected)
