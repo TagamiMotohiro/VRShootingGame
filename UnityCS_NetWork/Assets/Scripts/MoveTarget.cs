@@ -15,6 +15,7 @@ public class MoveTarget : Target
         //ターゲットがNULL出ない場合
         if (target == null) { return; }
         //目標プレイヤーに設定した速度で接近
+        Debug.Log(gameObject.name + HP.ToString());
         Move();
     }
     protected virtual void Move()

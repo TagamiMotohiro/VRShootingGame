@@ -6,25 +6,20 @@ using Photon.Realtime;
 using TMPro;
 public class MainGamePUNmaneger : MonoBehaviourPunCallbacks
 {
-    [SerializeField]
-    float instanceDistance=2;
-    
     GameObject player;
+	[SerializeField]
     GameObject OVRcamera;
+	[SerializeField]
     GameObject RightHand;
 	// Start is called before the first frame update
 	private void Awake()
 	{
-        //スコアが静的なので初期化
-
 	}
 	void Start()
     {
        
 		PhotonNetwork.IsMessageQueueRunning = true;
 		player = PhotonNetwork.Instantiate("VRPlayer", Vector3.zero, Quaternion.identity);
-		OVRcamera = GameObject.Find("OVRCameraRig");
-		RightHand = GameObject.Find("RighthandPrefub");
 		//scriptにプレイヤーの移動スクリプトを取得
 		var script = OVRcamera.gameObject.GetComponent<VRPlayerWork>();
 		var gun = RightHand.gameObject.GetComponent<PlayerGun>();

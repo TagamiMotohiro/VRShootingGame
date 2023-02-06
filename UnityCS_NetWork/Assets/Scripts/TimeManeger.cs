@@ -16,7 +16,6 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     [SerializeField]
     GameObject ExplainText;
     int startTime;
-    int startTimeSec=0;
     [SerializeField]
     int firstSpawn;//ゲームスタート直後に生成するターゲットの数
     [SerializeField]
@@ -46,13 +45,6 @@ public class TimeManeger : MonoBehaviourPunCallbacks
 	// Update is called once per frame
 	void Update()
     {
-        if (OVRInput.GetDown(OVRInput.RawButton.A))
-        {
-            ExplainText.SetActive(false);
-        }else if (OVRInput.GetDown(OVRInput.RawButton.B))
-        {
-            ExplainText.SetActive(true);
-        }
         CountDown();
         if (!start) { return; }
         int time =unchecked(PhotonNetwork.ServerTimestamp-startTime);

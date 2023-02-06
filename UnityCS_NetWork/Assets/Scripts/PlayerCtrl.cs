@@ -7,13 +7,20 @@ using Photon.Realtime;
 public class PlayerCtrl : MonoBehaviourPunCallbacks
 {
     private GameObject OVRcamera;
+    [SerializeField]
+    GameObject Panel;
     public int hp;
     // Start is called before the first frame update
     void Start()
     {
         if (photonView.IsMine)
-        { 
+        {
             this.gameObject.layer = 6;
+            this.transform.GetChild(0).gameObject.layer = 6;
+        }
+        else
+        {
+            Panel.SetActive(true);
         }
         OVRcamera = GameObject.Find("OVRCameraRig");
     }
@@ -24,11 +31,8 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
 		if (photonView.IsMine)
 		{
 			this.transform.position = OVRcamera.transform.position;
+            Panel.transform.rotation = Quaternion.FromToRotation(Vector3.forward,transform.position.normalized);
 		}
-        if (hp <= 0)
-        {
-           
-        }
 	}
     void damege()
     {

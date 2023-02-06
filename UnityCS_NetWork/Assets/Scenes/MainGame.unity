@@ -7381,6 +7381,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300832, guid: c925872ce3bfa384589bf34b953d5a65, type: 3}
+--- !u!1 &679455752 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7041786442796396443, guid: ccdb58cab2e8d7a4e855b2451db277d6, type: 3}
+  m_PrefabInstance: {fileID: 7041786442729276786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &679733529 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100434, guid: c925872ce3bfa384589bf34b953d5a65, type: 3}
@@ -13878,7 +13883,7 @@ MonoBehaviour:
   CountDownText: {fileID: 1687256309}
   ExplainText: {fileID: 0}
   firstSpawn: 3
-  timeMin: 1
+  timeMin: 2
 --- !u!1 &1276924747 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100678, guid: c925872ce3bfa384589bf34b953d5a65, type: 3}
@@ -24949,7 +24954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98940341a858daa4a88fcd7d274fdd48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instanceDistance: 2
+  OVRcamera: {fileID: 679455752}
+  RightHand: {fileID: 7041786442729276788}
 --- !u!114 &2138126214
 MonoBehaviour:
   m_ObjectHideFlags: 0
