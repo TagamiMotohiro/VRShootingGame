@@ -12,7 +12,7 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Awake()
     {
-        if (!PhotonNetwork.IsMasterClient)
+        if (!photonView.IsMine)
         {
             this.gameObject.layer = 10;
         }
