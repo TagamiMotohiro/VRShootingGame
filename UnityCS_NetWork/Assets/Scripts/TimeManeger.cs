@@ -13,8 +13,6 @@ public class TimeManeger : MonoBehaviourPunCallbacks
     TMPro.TextMeshProUGUI FinishText;
     [SerializeField]
     TMPro.TextMeshProUGUI CountDownText;
-    [SerializeField]
-    GameObject ExplainText;
     int startTime;
     [SerializeField]
     int firstSpawn;//ゲームスタート直後に生成するターゲットの数

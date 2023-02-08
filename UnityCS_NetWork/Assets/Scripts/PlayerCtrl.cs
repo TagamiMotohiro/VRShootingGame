@@ -28,11 +28,14 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-		if (photonView.IsMine)
-		{
-			this.transform.position = OVRcamera.transform.position;
-            Panel.transform.rotation = Quaternion.FromToRotation(Vector3.forward,transform.position.normalized);
-		}
+        if (photonView.IsMine)
+        {
+            this.transform.position = OVRcamera.transform.position;
+        }
+        else
+        {
+            Panel.transform.LookAt(OVRcamera.transform.position);
+        }
 	}
     void damege()
     {
