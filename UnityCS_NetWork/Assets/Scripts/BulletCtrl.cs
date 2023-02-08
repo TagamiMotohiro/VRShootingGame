@@ -8,11 +8,14 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
     Vector3 target;
     [SerializeField]
     GameObject HitEffect;
-    [SerializeField]
     float time=0;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            this.gameObject.layer = 10;
+        }
     }
 
     // Update is called once per frame

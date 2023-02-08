@@ -97,7 +97,7 @@ public class Target : MonoBehaviourPunCallbacks
                 destroyed = true;
                 Instantiate(DestroyEffect, transform.position, Quaternion.identity);
                 audioManeger.PlaySE(Player_Hit_SE);
-                maneger.PlusScore(-deferted_Score);
+                maneger.PlusScore(-deferted_Score/2);
                 TargetOwnerRequest();
                 return;
             }
