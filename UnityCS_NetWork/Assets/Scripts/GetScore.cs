@@ -16,6 +16,11 @@ public class GetScore : MainGamePUNmaneger {
         score_text1.text=ScoreManeger.Player1score.ToString();
         TextMeshProUGUI score_text2 = score_object2.GetComponent<TextMeshProUGUI>( );
         score_text2.text = ScoreManeger.Player2score.ToString();
+        //Ç±Ç±Ç…èüîsîªíËÇí«â¡
+        if (PhotonNetwork.IsMasterClient)
+        { 
+            
+        }
         PhotonNetwork.Disconnect();
     }
 
