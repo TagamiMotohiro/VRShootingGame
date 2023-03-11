@@ -7,10 +7,6 @@ using Photon.Realtime;
 public class Target : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    GameObject Defended_Effect;
-    [SerializeField]
-    GameObject DestroyEffect;
-    [SerializeField]
     protected int HP;
     [SerializeField]
     int hit_Score = 100;
@@ -18,6 +14,15 @@ public class Target : MonoBehaviourPunCallbacks
     int deferted_Score = 1000;
     [SerializeField]
     protected int anim_Speed = 1;
+    protected ScoreManeger maneger;
+    bool isTargeted;
+    bool destroyed = false;
+    Behaviour halo;
+    //素材関連(SE エフェクト)
+    [SerializeField]
+    GameObject Defended_Effect;
+    [SerializeField]
+    GameObject DestroyEffect;
     [SerializeField]
     AudioClip DestroySE;
     [SerializeField]
@@ -27,24 +32,15 @@ public class Target : MonoBehaviourPunCallbacks
     [SerializeField]
     AudioClip Guard_SE;
     AudioManeger audioManeger;
-    protected ScoreManeger maneger;
-    bool isTargeted;
-    bool destroyed = false;
-    Behaviour halo;
     // Start is called before the first frame update
     protected void Start()
     {
-        //タグで検索したほうが速いらしいのでタグで検索
+        //オブジェクト検索よりもタグで検索したほうが速いらしいのでタグで検索
         audioManeger = GameObject.FindWithTag("Audio").GetComponent<AudioManeger>();
         halo = (Behaviour)gameObject.GetComponent("Halo");
         maneger = GameObject.FindWithTag("PUN2Maneger").GetComponent<ScoreManeger>();
         PhotonNetwork.AddCallbackTarget(this.gameObject);
     }
-    // Update is called once per frame
-    // public override void OnDisable()
-    //{
-
-    //}
     void LateUpdate()
     {
         TargetAnimation();
@@ -57,10 +53,9 @@ public class Target : MonoBehaviourPunCallbacks
         }
         if (isTargeted)
         {
-            //自身が狙われたら
+            //自身が狙われたら発光
             if (halo == null) { return; }
             halo.enabled = true;
-            //発光
         }
         else
         {
@@ -94,16 +89,21 @@ public class Target : MonoBehaviourPunCallbacks
         if (Collision_photonView.IsMine && !destroyed) {
             if (collision.gameObject.tag == "Player")
             {
+                //プレイヤーに当たったら即座に破壊
                 destroyed = true;
                 Instantiate(DestroyEffect, transform.position, Quaternion.identity);
                 audioManeger.PlaySE(Player_Hit_SE);
+                //破壊時スコアの半分を減点
                 maneger.PlusScore(-deferted_Score/2);
+                //オブジェクト所有権をリクエスト
                 TargetOwnerRequest();
                 return;
             }
             else
             if (collision.gameObject.tag == "Shield")
             {
+                //エフェクトや得点以外プレイヤーの際の処理と同様
+
                 destroyed = true;
                 audioManeger.PlaySE(Guard_SE);
                 Instantiate(Defended_Effect, transform.position, Quaternion.identity);
@@ -113,7 +113,6 @@ public class Target : MonoBehaviourPunCallbacks
             }
             if (this.HP <= 0)
             {
-                //Instantiate(DestroyEffect, transform.position, Quaternion.identity);
                 //的を破壊したプレイヤーに所有権を委譲
                 //破壊したプレイヤーにオブジェクトの破棄を担当してもらう
                 GameObject g =Instantiate(DestroyEffect, transform.position, Quaternion.identity);
@@ -132,6 +131,7 @@ public class Target : MonoBehaviourPunCallbacks
     {
         if (!PhotonNetwork.IsMasterClient)
         {
+            //自身が部屋ホストでない場合にオブジェクト所有権をリクエスト(破壊されたときに使用)
             photonView.RequestOwnership();
         }
     }
