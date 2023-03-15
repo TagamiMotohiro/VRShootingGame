@@ -5,6 +5,8 @@ using Photon.Realtime;
 using Photon.Pun;
 public class TimeManeger : MonoBehaviourPunCallbacks
 {
+    //制作担当　田上
+    //制限時間に関するクラス
     bool start = false;
     bool timeset = false;
     [SerializeField]

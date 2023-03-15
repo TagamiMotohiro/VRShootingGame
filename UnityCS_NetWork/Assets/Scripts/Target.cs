@@ -6,6 +6,8 @@ using Photon.Realtime;
 
 public class Target : MonoBehaviourPunCallbacks
 {
+    //制作担当　田上
+    //弾を撃つことで壊せるすべての的の基底クラス
     [SerializeField]
     protected int HP;
     [SerializeField]

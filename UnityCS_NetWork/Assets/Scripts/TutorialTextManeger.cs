@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TutorialTextManeger : MonoBehaviour
 {
+    //制作担当　田上
+    //コントローラーに貼り付けてあるチュートリアルテキストの管理
     bool text_isActive = true;
     [SerializeField]
     GameObject canvas;

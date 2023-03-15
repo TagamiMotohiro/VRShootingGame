@@ -9,6 +9,8 @@ using UnityChan;
 
 public class ShotTarget : Target
 {
+    //制作担当　田上
+    //弾を撃ってくる敵に関するクラス
     [SerializeField]
     bool isStart = false;
     [SerializeField]

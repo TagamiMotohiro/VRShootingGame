@@ -5,6 +5,8 @@ using Photon.Pun;
 
 public class PlayerGun : MonoBehaviourPunCallbacks
 {
+    //制作担当　田上
+    //弾の生成、射出に関連するクラス
     public enum GUN_STATE :int{ 
         RAPID=0,
         SHOTGUN=1

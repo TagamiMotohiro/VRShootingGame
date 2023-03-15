@@ -6,6 +6,8 @@ using Photon.Realtime;
 
 public class PlayerCtrl : MonoBehaviourPunCallbacks
 {
+    //制作担当　田上
+    //移動以外のプレイヤー動作関連のクラス
     private GameObject OVRcamera;
     [SerializeField]
     GameObject Panel;

@@ -5,7 +5,8 @@ using Photon.Pun;
 
 public class BulletCtrl : MonoBehaviourPunCallbacks
 {
-    Vector3 target;
+    //制作担当　田上
+    //プレイヤーの弾の制御クラス
     [SerializeField]
     GameObject HitEffect;
     float time=0;
@@ -29,29 +30,11 @@ public class BulletCtrl : MonoBehaviourPunCallbacks
             PhotonNetwork.Destroy(gameObject);
             Instantiate(HitEffect, transform.position, Quaternion.identity);
         }
-        //ホーミング機能をつけようと思ったがAimの必要性が下がりゲーム性を担保できない可能性があるため保留
-        //Homing();
     }
 	private void OnCollisionEnter(Collision collision)
     {
         Instantiate(HitEffect,transform.position,Quaternion.identity);
         if (!photonView.IsMine) { return; }
         PhotonNetwork.Destroy(gameObject);
-    }
-    void Homing()
-    {
-        if (!photonView.IsMine) { return; }
-        if (target == new Vector3())
-        { this.transform.position += transform.forward; }
-        else
-        {
-            Vector3 velocity = (target-transform.position).normalized;
-            this.transform.position += (velocity*30)*Time.deltaTime;
-        }
-    }
-    public void SetTarget(Vector3 pos)
-    {
-        if (target == null) { return; }
-        target = pos;
     }
 }

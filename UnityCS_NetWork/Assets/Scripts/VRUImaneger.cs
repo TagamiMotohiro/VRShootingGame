@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class VRUImaneger : MonoBehaviour
 {
+    //制作担当　田上
+    //タイトル画面のUI関連クラス
     [SerializeField] Button SinglePlayerModeButton;
     [SerializeField] Button MaltiPlayerModeButton;
     [SerializeField] Button Explain;

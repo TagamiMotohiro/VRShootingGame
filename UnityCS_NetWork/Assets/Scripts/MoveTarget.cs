@@ -5,6 +5,7 @@ using System.Linq;
 using Photon.Pun;
 public class MoveTarget : Target
 {
+    //このコードはアセットとして利用しています
     GameObject target;
     [SerializeField]
     protected float chaseSpeed;

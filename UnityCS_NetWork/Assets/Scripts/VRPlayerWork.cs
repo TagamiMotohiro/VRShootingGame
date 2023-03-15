@@ -33,7 +33,6 @@ public class VRPlayerWork : MonoBehaviour
     const float RUN_THRESHOLD = 1.3f;
     const float JUMP_THRESHOLD = 1.5f;
 
-    //このコードはアセットとして利用しています
     private void Awake()
     {
         Controller
