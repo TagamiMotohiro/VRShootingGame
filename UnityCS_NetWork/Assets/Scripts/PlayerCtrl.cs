@@ -17,11 +17,13 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
+            //自分のオブジェクトをカメラ描画対象外のレイヤーにする
             this.gameObject.layer = 6;
             this.transform.GetChild(0).gameObject.layer = 6;
         }
         else
         {
+            //相手のオブジェクトに[相手]パネルを表示させる
             Panel.SetActive(true);
         }
         OVRcamera = GameObject.Find("OVRCameraRig");
@@ -36,11 +38,8 @@ public class PlayerCtrl : MonoBehaviourPunCallbacks
         }
         else
         {
+            //
             Panel.transform.LookAt(OVRcamera.transform.position);
         }
 	}
-    void damege()
-    {
-        this.hp--;
-    }
 }

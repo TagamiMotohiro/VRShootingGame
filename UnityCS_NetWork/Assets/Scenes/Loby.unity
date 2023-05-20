@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SinglePlayerModeButton: {fileID: 111580623}
   MaltiPlayerModeButton: {fileID: 1554731465}
-  Explain: {fileID: 1279820918}
+  ExplainButton: {fileID: 1279820918}
   ExplainPanel: {fileID: 616524022}
   selected_SE: {fileID: 8300000, guid: 135621e5eb74b9a4ca7e64e37cd1e429, type: 3}
 --- !u!4 &443103882

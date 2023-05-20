@@ -8,6 +8,7 @@ public class Target : MonoBehaviourPunCallbacks
 {
     //制作担当　田上
     //弾を撃つことで壊せるすべての的の基底クラス
+    [Header("ステータス関連")]
     [SerializeField]
     protected int HP;
     [SerializeField]
@@ -20,7 +21,7 @@ public class Target : MonoBehaviourPunCallbacks
     bool isTargeted;
     bool destroyed = false;
     Behaviour halo;
-    //素材関連(SE エフェクト)
+    [Header("素材関連(SE エフェクト)")]
     [SerializeField]
     GameObject Defended_Effect;
     [SerializeField]
@@ -39,8 +40,10 @@ public class Target : MonoBehaviourPunCallbacks
     {
         //オブジェクト検索よりもタグで検索したほうが速いらしいのでタグで検索
         audioManeger = GameObject.FindWithTag("Audio").GetComponent<AudioManeger>();
-        halo = (Behaviour)gameObject.GetComponent("Halo");
         maneger = GameObject.FindWithTag("PUN2Maneger").GetComponent<ScoreManeger>();
+        //HaloはBehabiourの文字列取得でしか取得できないのでそれで取得
+        halo = (Behaviour)gameObject.GetComponent("Halo");
+        
         PhotonNetwork.AddCallbackTarget(this.gameObject);
     }
     void LateUpdate()
@@ -76,8 +79,8 @@ public class Target : MonoBehaviourPunCallbacks
     }
     public void OnCollisionEnter(Collision collision)
     {
-        //謎だったりターゲット同士の衝突が起きてしまった場合は何もせず消滅
-        if (collision.gameObject.tag == "Untagged" || collision.gameObject.tag == "Target")
+        //衝突先が謎だったりターゲット同士の衝突が起きてしまった場合は何もせず消滅
+        if (collision.gameObject.tag=="Untagged"||collision.gameObject.tag=="Target")
         {
             if (photonView.IsMine)
             {
@@ -104,8 +107,8 @@ public class Target : MonoBehaviourPunCallbacks
             else
             if (collision.gameObject.tag == "Shield")
             {
-                //エフェクトや得点以外プレイヤーの際の処理と同様
-
+                //盾に当たった際の処理
+                //エフェクトや得点以外はプレイヤーにヒットした際の処理と同様
                 destroyed = true;
                 audioManeger.PlaySE(Guard_SE);
                 Instantiate(Defended_Effect, transform.position, Quaternion.identity);

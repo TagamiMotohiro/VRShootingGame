@@ -166,12 +166,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5669243d716f4744d95f4072bbaea425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Defended_Effect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
-  DestroyEffect: {fileID: 1177040142265641561, guid: 66c817a0b714bd0448a2de23ed010cb9, type: 3}
   HP: 5
   hit_Score: 100
   deferted_Score: 1000
   anim_Speed: 1
+  Defended_Effect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd, type: 3}
+  DestroyEffect: {fileID: 1177040142265641561, guid: 66c817a0b714bd0448a2de23ed010cb9, type: 3}
   DestroySE: {fileID: 8300000, guid: 055319f4a8aa9714a92068f2b5afbc2f, type: 3}
   Player_Hit_SE: {fileID: 8300000, guid: 5d75a44da6af1314c9ac3af065b29847, type: 3}
   Hit_SE: {fileID: 8300000, guid: 6a3ef96f8dd09814f91689ff51c56308, type: 3}

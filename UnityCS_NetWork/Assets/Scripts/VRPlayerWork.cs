@@ -3,6 +3,8 @@ using System.Collections;
 using UnityEngine;
 public class VRPlayerWork : MonoBehaviour
 {
+    //このコードはアセットとして利用しています。
+    //参考　https://qiita.com/takafumihoriuchi/items/0f4bf9e6ed060bc2efbe
     [SerializeField] private GameObject OVRPlayerControllerGameObject = null;
     [SerializeField] private Transform LeftHandAnchorTransform = null;
     [SerializeField] private Transform RightHandAnchorTransform = null;

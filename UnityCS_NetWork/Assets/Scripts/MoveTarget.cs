@@ -5,7 +5,8 @@ using System.Linq;
 using Photon.Pun;
 public class MoveTarget : Target
 {
-    //このコードはアセットとして利用しています
+    //制作　田上
+    //砲台型の敵が撃った弾に関するクラス(Targetからの継承)
     GameObject target;
     [SerializeField]
     protected float chaseSpeed;

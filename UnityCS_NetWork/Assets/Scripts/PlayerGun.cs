@@ -19,14 +19,21 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     public float lineRange;
     float coolTime=0;
     int magazine=0;
+    [Header ("プレイヤーステータス")]
     [SerializeField]
     float maxCharge;
     [SerializeField]
     int maxMagazine = 9;
     [SerializeField]
+    float ChargeSpeed;
+    [SerializeField]
     float late=0.1f;
     [SerializeField]
+    float CubeRotateSpeed;
+    [Header ("照準用のレイヤーマスク")]
+    [SerializeField]
     LayerMask rayMask;
+    [Header ("音声素材")]
     [SerializeField]
     AudioClip Shot_SE;
     [SerializeField]
@@ -71,7 +78,7 @@ public class PlayerGun : MonoBehaviourPunCallbacks
             state_num++;
             //番号に合わせてステータスを変更
             state = (GUN_STATE)(state_num%System.Enum.GetValues(typeof(GUN_STATE)).Length);
-            //magazineを０に
+            //magazineを０に(射撃中にステータス変更した場合撃つのをやめる)
             magazine = 0;
         }
     }
@@ -130,6 +137,7 @@ public class PlayerGun : MonoBehaviourPunCallbacks
                         magazine--;
                     break;
                     case GUN_STATE.SHOTGUN:
+                        //散弾を一回だけ発射
                         myAS.volume = 0.5f;
                         myAS.PlayOneShot(Shot_SE);
                         ShotGun();
@@ -138,6 +146,7 @@ public class PlayerGun : MonoBehaviourPunCallbacks
                 }
             }
         }
+        //クールタイムを増加
         coolTime+=Time.deltaTime;
     }
     void ShotGun()
@@ -171,29 +180,28 @@ public class PlayerGun : MonoBehaviourPunCallbacks
     }
     void SetPointer()
     {
+       //AIM用のポインターを生成
        myLR.SetPosition(0, this.transform.position);
        myLR.SetPosition(1, this.transform.position + this.transform.forward * lineRange);
     }
     void Fire(Vector3 pos,Vector3 forcevec)
     {
-        Debug.Log(aim_Target);
+        //弾を生成
+        //そのまま力を与えて飛ばす
         GameObject g = PhotonNetwork.Instantiate("Bullet",pos,transform.rotation);
-        ////射撃時に追尾対象を設定
-        //g.GetComponent<BulletCtrl>().SetTarget(aim_Target);
         g.GetComponent<Rigidbody>().AddForce(forcevec * velocity, ForceMode.Impulse);
     }
     void EnelgyCharge()
     {
-        Charge += 3 * Time.deltaTime;
-
+        Charge += ChargeSpeed * Time.deltaTime;
         if (Charge > maxCharge)
         {
             Charge = maxCharge;
         }
         else
         {
-            //生成中は回転する
-            go.transform.Rotate(0, 4, 0);
+            //弾生成中は回転する
+            go.transform.Rotate(0, CubeRotateSpeed*Time.deltaTime, 0);
         }
     }
     void LockOn(RaycastHit hit)

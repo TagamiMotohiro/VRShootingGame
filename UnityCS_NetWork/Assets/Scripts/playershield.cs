@@ -6,6 +6,8 @@ using Unity.VisualScripting;
 
 public class playershield : MonoBehaviourPunCallbacks
 {
+    //制作担当　田上
+    //左手の盾生成に関するクラス
     GameObject shield;
     float charge=0;
     [SerializeField]

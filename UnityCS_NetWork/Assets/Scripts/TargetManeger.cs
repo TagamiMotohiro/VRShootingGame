@@ -5,7 +5,9 @@ using Photon.Pun;
 using Photon.Realtime;
 using System.Linq;
 public class TargetManeger : MonoBehaviourPunCallbacks
-{
+   { 
+    //制作担当:田上
+    //的生成の管理をするクラス
     [SerializeField]
     int spawn_Limit = 10;//ターゲットの沸き数上限
     [SerializeField]
